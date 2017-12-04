@@ -26,7 +26,7 @@
         return (
           // TODO: Movie selector with poster API!
           // http://img.omdbapi.com/?apikey=[yourkey]&
-          <GameBoard url={"http://www.omdbapi.com/?apikey=" + config.SECRET_KEY + "&t=Batman/"}/>
+          <GameBoard url={"http://www.omdbapi.com/?apikey=" + config.SECRET_KEY + "&t=Star%20Wars/"}/>
         )
       }
     }
@@ -43,16 +43,9 @@
       }
 
       componentDidMount(){
-        var movieData = this.getMovie();
-        const actorList = this.state.movieData.actors.split(",")
-        const actorData = actorList.map(
-          this.getActor(actorName)
-        )
-
-        // this.setState({
-        //   movie
-        //   actors: actorData
-        // })
+        this.getMovie();
+        // const actorList = this.state.actors.split(",")
+        // actorList.map(this.getActor(actorName))
       }
 
       getActor(actorName) {
@@ -61,7 +54,7 @@
           type: "get",
           dataType: "JSONP",
           success: function(data) {
-            return data;
+            this.setState((state) => ({actors: this.state.actors.concat(data) }));
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
@@ -75,8 +68,13 @@
           type: "get",
           dataType: "JSONP",
           success: function(data) {
-            // UNDEFINED.
-            return data;
+            this.setState({movieData: data});
+            const _this = this;
+            // TODO: ES6 this:
+            data["Actors"].split(",").map(function(actorName){
+              _this.getActor(actorName.replace(" ", "%20"))
+            })
+            debugger;
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
