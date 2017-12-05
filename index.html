@@ -24,9 +24,11 @@
     class App extends React.Component {
       render() {
         return (
-          // TODO: Movie selector with poster API!
-          // http://img.omdbapi.com/?apikey=[yourkey]&
-          <GameBoard url={"http://www.omdbapi.com/?apikey=" + config.SECRET_KEY + "&t=Star%20Wars/"}/>
+
+          // var searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + config.TMDB_V3_KEY + "&query=Star%20Wars"
+          <GameBoard movieUrl={"https://api.themoviedb.org/3/movie/1891?api_key=" + config.TMDB_V3_KEY}
+            actorUrl={"https://api.themoviedb.org/3/movie/1891/credits?api_key=" + config.TMDB_V3_KEY}
+          />
         )
       }
     }
@@ -37,24 +39,23 @@
         super(props);
         this.state = {
           movieData: [],
-          actors: [],
+          cast: [],
           answerKey: []
         }
       }
 
       componentDidMount(){
         this.getMovie();
-        // const actorList = this.state.actors.split(",")
-        // actorList.map(this.getActor(actorName))
+        this.getCast();
       }
 
-      getActor(actorName) {
+      getCast(actorName) {
         $.ajax({
-          url: "http://www.omdbapi.com/?apikey=${config.SECRET_KEY}&type=actor&s=${actorName}/",
+          url: this.props.actorUrl,
           type: "get",
           dataType: "JSONP",
           success: function(data) {
-            this.setState((state) => ({actors: this.state.actors.concat(data) }));
+            this.setState({cast: data.cast.slice(0,4)});
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
@@ -64,17 +65,11 @@
 
       getMovie(){
         $.ajax({
-          url: this.props.url,
+          url: this.props.movieUrl,
           type: "get",
           dataType: "JSONP",
           success: function(data) {
             this.setState({movieData: data});
-            const _this = this;
-            // TODO: ES6 this:
-            data["Actors"].split(",").map(function(actorName){
-              _this.getActor(actorName.replace(" ", "%20"))
-            })
-            debugger;
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
@@ -83,18 +78,17 @@
       }
 
       render(){
-        const actors = this.state.actors;
+        const title = this.state.actors;
         // const scrambledNames = scrambleNames();
         //
         // scrambleNames(){
         //   //
         // }
         return(
+
           <div className="actorRow">
             // Map with scrambled name
-            {actors.map((actor) => (
-              <Actor image={actor.image} actualName={actor.name}/>
-            ))}
+
           </div>
         )
       }
