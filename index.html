@@ -24,8 +24,8 @@
     class App extends React.Component {
       render() {
         return (
+          // TODO: SEARCH FEATURE
 
-          // var searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + config.TMDB_V3_KEY + "&query=Star%20Wars"
           <GameBoard movieUrl={"https://api.themoviedb.org/3/movie/1891?api_key=" + config.TMDB_V3_KEY}
             actorUrl={"https://api.themoviedb.org/3/movie/1891/credits?api_key=" + config.TMDB_V3_KEY}
           />
@@ -34,7 +34,6 @@
     }
 
     class GameBoard extends React.Component {
-      // Constructor to get actors
       constructor(props){
         super(props);
         this.state = {
@@ -55,6 +54,7 @@
           type: "get",
           dataType: "JSONP",
           success: function(data) {
+            // Select 5 cast members
             this.setState({cast: data.cast.slice(0,4)});
           }.bind(this),
           error: function(xhr, status, error){
@@ -77,8 +77,17 @@
         })
       }
 
+      scrambleCastNames() {
+        const cast = this.state.cast;
+        {cast.map((castMember) => (
+          castMember.name;
+        ))}
+
+      }
+
       render(){
-        const title = this.state.actors;
+        const cast = this.state.cast;
+        const scrambleNames = this.scrambleCastNames;
         // const scrambledNames = scrambleNames();
         //
         // scrambleNames(){
@@ -86,11 +95,27 @@
         // }
         return(
 
-          <div className="actorRow">
-            // Map with scrambled name
+          // TODO: DRAG AND DROP
+          // Maybe start with dropdown?
+          <div className="nameSquares">
+            {scrambledNames.map((name) => (
+              <nameSquare name={name}/>
+            ))}
+          </div>
 
+          <div className="castRow">
+            {cast.map((castMember) =>(
+              <CastMember thumbnailUrl={this.profile_path} actualName={this.name} />
+            ))}
           </div>
         )
+      }
+    }
+
+    class CastMember extends React.Component {
+      const 
+      render(){
+        return()
       }
     }
 
