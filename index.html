@@ -105,7 +105,7 @@
 
           <div className="castRow">
             {cast.map((castMember) =>(
-              <CastMember thumbnailUrl={this.profile_path} actualName={this.name} />
+              <CastMember thumbnailUrl={this.profile_path} actualName={this.name} personId={this.id}/>
             ))}
           </div>
         )
@@ -113,9 +113,12 @@
     }
 
     class CastMember extends React.Component {
-      const 
       render(){
-        return()
+        const thumbNailUrl = "https://api.themoviedb.org/3/people/" + this.props.personId + this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY}
+
+        return(
+          <img className="castThumbnial" src = thumbNailUrl>
+        )
       }
     }
 
