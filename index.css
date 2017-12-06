@@ -1,0 +1,18 @@
+
+.app{
+  border-style: solid;
+  border-width: 2px;
+}
+
+.castRow{
+
+}
+
+.castThumbnail {
+  height: 100px;
+  widht: 50px;
+  display:inline-block;
+  /*width:auto;*/
+  /*float: left;*/
+
+}
