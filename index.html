@@ -77,47 +77,47 @@
         })
       }
 
-      scrambleCastNames() {
-        const cast = this.state.cast;
-        {cast.map((castMember) => (
-          castMember.name;
-        ))}
-
-      }
+      // scrambleCastNames() {
+      //   const cast = this.state.cast;
+      //   {cast.map((castMember) => (
+      //     castMember.name;
+      //   ))}
+      // }
 
       render(){
         const cast = this.state.cast;
-        const scrambleNames = this.scrambleCastNames;
-        // const scrambledNames = scrambleNames();
-        //
-        // scrambleNames(){
-        //   //
-        // }
+        // const scrambleNames = this.scrambleCastNames;
+
         return(
 
-          // TODO: DRAG AND DROP
-          // Maybe start with dropdown?
-          <div className="nameSquares">
-            {scrambledNames.map((name) => (
-              <nameSquare name={name}/>
-            ))}
-          </div>
 
-          <div className="castRow">
-            {cast.map((castMember) =>(
-              <CastMember thumbnailUrl={this.profile_path} actualName={this.name} personId={this.id}/>
-            ))}
-          </div>
+          // <div className="gameBoard">
+            // TODO: DRAG AND DROP
+            // Maybe start with dropdown?
+            // <div className="nameSquares">
+            //   {scrambledNames.map((name) => (
+            //     <nameSquare name={name}/>
+            //   ))}
+            // </div>
+
+            <div className="castRow">
+
+              {cast.map((castMember) => (
+                <CastMember thumbnailUrl={castMember.profile_path} actualName={castMember.name} personId={castMember.id}/>
+              ))}
+
+            </div>
+          // </div>
         )
       }
     }
 
     class CastMember extends React.Component {
       render(){
-        const thumbNailUrl = "https://api.themoviedb.org/3/people/" + this.props.personId + this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY}
+        const thumbnailUrl = "https://image.tmdb.org/t/p/w500" +  this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY;
 
         return(
-          <img className="castThumbnial" src = thumbNailUrl>
+          <img className="castThumbnial" src={thumbnailUrl}/>
         )
       }
     }
