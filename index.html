@@ -19,11 +19,13 @@
     </div>
   </nav>
 
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-4 app" id="app"></div>
-    <div class="col-md-2"></div>
 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 app" id="app"></div>
+      <div class="col-md-1"></div>
+    </div>
   </div>
   <!--Future: break into separate files and run on webserver -->
   <!-- https://stackoverflow.com/questions/30200028/react-component-in-seperate-script-does-not-work -->
@@ -66,7 +68,7 @@
           dataType: "JSONP",
           success: function(data) {
             // Select 5 cast members
-            this.setState({cast: data.cast.slice(0,4)});
+            this.setState({cast: data.cast.slice(0,5)});
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
@@ -100,13 +102,14 @@
 
         return(
 
-            <div className="castRow">
-              {cast.map((castMember) => (
-                <div className="castMember">
-                  <CastMember thumbnailUrl={castMember.profile_path} actualName={castMember.name} personId={castMember.id}/>
-                </div>
-              ))}
-
+            <div className="gameBoard">
+              <div className="castRow">
+                {cast.map((castMember) => (
+                  <div className="castMember">
+                    <CastMember thumbnailUrl={castMember.profile_path} actualName={castMember.name} personId={castMember.id}/>
+                  </div>
+                ))}
+              </div>
             </div>
 
         )
@@ -118,7 +121,8 @@
         const thumbnailUrl = "https://image.tmdb.org/t/p/w500" +  this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY;
 
         return(
-          <img className="castThumbnail" src={thumbnailUrl}/>
+          <div></div>
+          // <img className="castThumbnail" src={thumbnailUrl}/>
         )
       }
     }

@@ -1,18 +1,40 @@
 
 .app{
-  border-style: solid;
+  /*border-style: solid;
+  border-width: 2px;*/
+  height: 100%;
+}
+
+.gameBoard {
+  /*border-style: solid;
   border-width: 2px;
+  border-color: red;*/
+  margin: 10px;
+  height: 600px;
 }
 
 .castRow{
+  border-style: solid;
+  border-width: 2px;
+  border-color: green;
+  margin-top: 20px;
+  height: 300px;
+  width: auto;
 
 }
 
-.castThumbnail {
-  height: 100px;
-  widht: 50px;
-  display:inline-block;
-  /*width:auto;*/
-  /*float: left;*/
-
+/*TODO: MAKE EVEN!*/
+.castMember{
+  border-style: solid;
+  border-width:  2px;
+  border-color: blue;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 180px;
+  height: 100%;
+  display: inline-block;
 }
+
+/*.castThumbnail {
+  margin: 20px;
+}*/
