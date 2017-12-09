@@ -52,7 +52,7 @@
         this.state = {
           movieData: [],
           cast: [],
-          answerKey: []
+          scrambledCast: []
         }
       }
 
@@ -67,10 +67,11 @@
           type: "get",
           dataType: "JSONP",
           success: function(data) {
+            const firstFive = data.cast.slice(0,5);
             // Select 5 cast members
             this.setState({
-              cast: data.cast.slice(0,5),
-              scrambledCast: this.shuffleCast(data.cast);
+              cast: firstFive,
+              scrambledCast: this.shuffleCast(firstFive)
             });
           }.bind(this),
           error: function(xhr, status, error){
@@ -93,15 +94,24 @@
         })
       }
 
-      shuffleCast(){
-          // Fisher-Yates shuffle
+      shuffleCast(castMembers){
+          // Fisher-Yates shuffle for fun
+          var remainingCount = castMembers.length, top, index;
+          while(remainingCount) {
+            // Pick a random remaining element
+            index = Math.floor(Math.random() * remainingCount--);
+            // Swap it with the current element
+            top = castMembers[remainingCount];
+            castMembers[remainingCount] = castMembers[index];
+            castMembers[index] = top;
+          }
+          return castMembers;
       }
 
       render(){
         const cast = this.state.cast;
 
         return(
-
             <div className="gameBoard">
               <div className="castRow">
                 {cast.map((castMember) => (
@@ -132,12 +142,16 @@
 
     class nameSelector extends React.Component {
       render() {
-        const scrambleCastNames =
+        const scrambledCast = this.state.scrambledCast;
+        console.log(scrambledCast);
         // TODO: React Boostrap buttons?
         // https://react-bootstrap.github.io/introduction.html
         return(
           <select>
-
+            <option>Select Name</option>
+            {scrambledCast.map((castMember) => (
+              <option>{castMember.name}</option>
+            ))}
           </select>
         )
       }
