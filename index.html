@@ -68,7 +68,10 @@
           dataType: "JSONP",
           success: function(data) {
             // Select 5 cast members
-            this.setState({cast: data.cast.slice(0,5)});
+            this.setState({
+              cast: data.cast.slice(0,5),
+              scrambledCast: this.shuffleCast(data.cast);
+            });
           }.bind(this),
           error: function(xhr, status, error){
             console.log(error);
@@ -90,12 +93,9 @@
         })
       }
 
-      // scrambleCastNames() {
-      //   const cast = this.state.cast;
-      //   {cast.map((castMember) => (
-      //     castMember.name;
-      //   ))}
-      // }
+      shuffleCast(){
+          // Fisher-Yates shuffle
+      }
 
       render(){
         const cast = this.state.cast;
@@ -111,7 +111,6 @@
                 ))}
               </div>
             </div>
-
         )
       }
     }
@@ -121,8 +120,25 @@
         const thumbnailUrl = "https://image.tmdb.org/t/p/w500" +  this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY;
 
         return(
-          <div></div>
-          // <img className="castThumbnail" src={thumbnailUrl}/>
+          // TODO: return array of divs with new React?
+          // Pass actualName to nameSelector props?
+          <div>
+            <img className="castThumbnail" src={thumbnailUrl}/>
+            <nameSelector/>
+          </div>
+        )
+      }
+    }
+
+    class nameSelector extends React.Component {
+      render() {
+        const scrambleCastNames =
+        // TODO: React Boostrap buttons?
+        // https://react-bootstrap.github.io/introduction.html
+        return(
+          <select>
+
+          </select>
         )
       }
     }
