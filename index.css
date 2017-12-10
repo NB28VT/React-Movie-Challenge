@@ -39,3 +39,8 @@
   width: 100%;
   height: auto;
 }
+
+.nameSelector {
+  margin-top: 10px;
+  width: 180px;
+}
