@@ -51,7 +51,7 @@
           this.state = {
             movieData: [],
             cast: [],
-            scrambledCast: [],
+            scrambledCast: []
           }
         }
 
@@ -111,10 +111,13 @@
           const scrambledCast = this.state.scrambledCast;
           return(
               <div className="gameBoard">
+                <div className="movieTitle">
+                  <h1>{this.state.movieData.title}</h1>
+                </div>
                 <div className="castRow">
                   {cast.map((castMember) => (
                     <div className="castMember">
-                      <CastMember thumbnailUrl={castMember.profile_path} actualName={castMember.name} scrambledCast={scrambledCast}/>
+                      <CastMember thumbnailUrl={castMember.profile_path} memberId={castMember.id} scrambledCast={scrambledCast}/>
                     </div>
                   ))}
                 </div>
@@ -124,13 +127,28 @@
       }
 
       class CastMember extends React.Component {
+        // Keep state in here for now
+        constructor(props){
+          super(props)
+          this.state = {
+            correctAnswer: false
+          }
+        }
+
+        handleNameSelection(value) {
+          console.log(parseInt(value) === this.props.memberId);
+          // this.setState({correctAnswer: value === this.props.memberId})
+        }
+
         render(){
           const thumbnailUrl = "https://image.tmdb.org/t/p/w500" +  this.props.thumbnailUrl + "?api_key=" + config.TMDB_V3_KEY;
           const scrambledCast = this.props.scrambledCast;
+
+
           return(
             <div>
               <img className="castThumbnail" src={thumbnailUrl}/>
-              <NameSelector  scrambledCast={scrambledCast} />
+              <NameSelector  onNameSelection={this.handleNameSelection.bind(this)} scrambledCast={scrambledCast} />
             </div>
           )
         }
@@ -139,16 +157,24 @@
       // TODO: Rewrite as a functional component?
       // https://reactjs.org/tutorial/tutorial.html#functional-components
       class NameSelector extends React.Component {
+        constructor(props) {
+          super(props);
+          this.handleChange = this.handleChange.bind(this);
+        }
+
+        handleChange(event) {
+          this.props.onNameSelection(event.target.value);
+        }
 
         render(){
-          this.props.seleced = null;
+          this.props.selected = null;
           this.props.correct = false;
           const scrambledCast = this.props.scrambledCast;
 
           // TODO: React Boostrap buttons?
           // https://react-bootstrap.github.io/introduction.html
           return(
-            <select className="nameSelector">
+            <select onChange={this.handleChange} className="nameSelector">
               <option>Select Name</option>
               {scrambledCast.map((castMember) => (
                 <option value={castMember.id}>{castMember.name}</option>
