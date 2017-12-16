@@ -51,7 +51,8 @@
           this.state = {
             movieData: [],
             cast: [],
-            scrambledCast: []
+            scrambledCast: [],
+            selections: {}
           }
         }
 
@@ -60,16 +61,45 @@
           this.getCast();
         }
 
+        handleCorrectAnswer(castId) {
+          const selections = this.state.selections;
+          selections[castId] = true;
+          this.setState({selections: selections});
+          // Move to component did update, possibly..
+          this.checkAnswers();
+        }
+
+        checkAnswers() {
+          if ( Object.values(this.state.selections).every(answer => answer === true) ) {
+            alert("You are winnah! Hahaha");
+          }
+        }
+
+        componentDidUpdate(){
+          // Check if the game has been won here
+        }
+
+        buildSelections(castList) {
+          var selections = {};
+          castList.forEach(function(castMember){
+            selections[castMember.id] = false;
+          })
+          return selections;
+        }
+
         getCast(actorName) {
           $.ajax({
             url: this.props.actorUrl,
             type: "get",
             dataType: "JSONP",
             success: function(data) {
-              // Using same var shuffles cast list MUTABILITY
+
+              const castList = data.cast.slice(0,5);
               this.setState({
-                cast: data.cast.slice(0,5),
+                cast: castList,
+                // Using same var shuffles cast list MUTABILITY
                 scrambledCast: this.shuffleCast(data.cast.slice(0,5)),
+                selections: this.buildSelections(castList)
               });
             }.bind(this),
             error: function(xhr, status, error){
@@ -117,7 +147,7 @@
                 <div className="castRow">
                   {cast.map((castMember) => (
                     <div className="castMember">
-                      <CastMember thumbnailUrl={castMember.profile_path} memberId={castMember.id} scrambledCast={scrambledCast}/>
+                      <CastMember handleCorrectAnswer={this.handleCorrectAnswer.bind(this)} thumbnailUrl={castMember.profile_path} memberId={castMember.id} scrambledCast={scrambledCast}/>
                     </div>
                   ))}
                 </div>
@@ -127,17 +157,11 @@
       }
 
       class CastMember extends React.Component {
-        // Keep state in here for now
-        constructor(props){
-          super(props)
-          this.state = {
-            correctAnswer: false
-          }
-        }
-
         handleNameSelection(value) {
-          console.log(parseInt(value) === this.props.memberId);
-          // this.setState({correctAnswer: value === this.props.memberId})
+          // Bug! if wrong set value to false
+          if (parseInt(value) === this.props.memberId) {
+            this.props.handleCorrectAnswer(this.props.memberId);
+          }
         }
 
         render(){
@@ -157,24 +181,17 @@
       // TODO: Rewrite as a functional component?
       // https://reactjs.org/tutorial/tutorial.html#functional-components
       class NameSelector extends React.Component {
-        constructor(props) {
-          super(props);
-          this.handleChange = this.handleChange.bind(this);
-        }
-
-        handleChange(event) {
+        handleSelection(event) {
           this.props.onNameSelection(event.target.value);
         }
 
         render(){
-          this.props.selected = null;
-          this.props.correct = false;
           const scrambledCast = this.props.scrambledCast;
 
           // TODO: React Boostrap buttons?
           // https://react-bootstrap.github.io/introduction.html
           return(
-            <select onChange={this.handleChange} className="nameSelector">
+            <select onChange={this.handleSelection.bind(this)} className="nameSelector">
               <option>Select Name</option>
               {scrambledCast.map((castMember) => (
                 <option value={castMember.id}>{castMember.name}</option>
