@@ -36,23 +36,25 @@
       class App extends React.Component {
         render() {
           return (
-            // TODO: SEARCH FEATURE
-            <GameBoard movieUrl={"https://api.themoviedb.org/3/movie/1891?api_key=" + config.TMDB_V3_KEY}
-              actorUrl={"https://api.themoviedb.org/3/movie/1891/credits?api_key=" + config.TMDB_V3_KEY}
-            />
-
+            <GameBoard />
           )
         }
       }
 
       class GameBoard extends React.Component {
+        // TODO: Find a way to get all of these functions out of this component!
         constructor(props){
           super(props);
+          // Set default: Empire Strikes Back
           this.state = {
+            movieUrl: "https://api.themoviedb.org/3/movie/1891?api_key=" + config.TMDB_V3_KEY,
+            actorsUrl: "https://api.themoviedb.org/3/movie/1891/credits?api_key=" + config.TMDB_V3_KEY,
             movieData: [],
             cast: [],
             scrambledCast: [],
-            selections: {}
+            selections: {},
+            titleSearch: "",
+            searchResults: []
           }
         }
 
@@ -75,6 +77,10 @@
           }
         }
 
+        handleSearchResults() {
+
+        }
+
         componentDidUpdate(){
           // Check if the game has been won here
         }
@@ -89,11 +95,10 @@
 
         getCast(actorName) {
           $.ajax({
-            url: this.props.actorUrl,
+            url: this.state.actorsUrl,
             type: "get",
             dataType: "JSONP",
             success: function(data) {
-
               const castList = data.cast.slice(0,5);
               this.setState({
                 cast: castList,
@@ -110,7 +115,7 @@
 
         getMovie(){
           $.ajax({
-            url: this.props.movieUrl,
+            url: this.state.movieUrl,
             type: "get",
             dataType: "JSONP",
             success: function(data) {
@@ -136,11 +141,39 @@
             return castMembers;
         }
 
+        handleSearchValue(searchValue) {
+          this.setState({titleSearch: searchValue});
+        }
+
+        handleSearchResults(data) {
+          const topThree = data.results.slice(0,3)
+          this.setState({searchResults: topThree});
+        }
+
+        submitSearch(){
+          const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + config.TMDB_V3_KEY + "&query=" + encodeURI(this.state.titleSearch);
+          $.ajax({
+            url: searchUrl,
+            type: "get",
+            dataType: "JSONP",
+            success: function(data) {
+              this.handleSearchResults(data);
+            }.bind(this),
+            error: function(xhr, status, error){
+              console.log(error);
+            }.bind(this)
+          })
+        }
+
         render(){
           const cast = this.state.cast;
           const scrambledCast = this.state.scrambledCast;
+          // TODO: add reset button
           return(
               <div className="gameBoard">
+                <div className="searchBar">
+                  <SearchBar titleSearch={this.state.titleSearch} handleSearchValue={this.handleSearchValue.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
+                </div>
                 <div className="movieTitle">
                   <h1>{this.state.movieData.title}</h1>
                 </div>
@@ -152,6 +185,30 @@
                   ))}
                 </div>
               </div>
+          )
+        }
+      }
+
+      class SearchBar extends React.Component {
+        submitSearch(event){
+          event.preventDefault();
+          this.props.submitSearch();
+        }
+
+        handleSearchValue(event){
+          this.props.handleSearchValue(event.target.value);
+        }
+
+        // Future: instant search? Too many API calls probably...
+        render(){
+          return(
+            <form onSubmit={this.submitSearch.bind(this)}>
+              <label>
+                Search:
+                <input type="text" name="search" onChange={this.handleSearchValue.bind(this)} value={this.props.titleSearch}/>
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
           )
         }
       }
