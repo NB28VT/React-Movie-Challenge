@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 class SearchBar extends React.Component {
-  
-
   submitSearch(event){
     event.preventDefault();
     const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + config.TMDB_V3_KEY + "&query=" + encodeURI(this.state.titleSearch);
@@ -11,15 +9,13 @@ class SearchBar extends React.Component {
       type: "get",
       dataType: "JSONP",
       success: function(data) {
-        this.handleSearchResults(data);
+        this.props.updateMovieChoices(data.results.slice(0,3));
       }.bind(this),
       error: function(xhr, status, error){
         console.log(error);
       }.bind(this)
     })
   }
-
-
 
   render(){
     return(

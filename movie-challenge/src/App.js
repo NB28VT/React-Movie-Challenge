@@ -6,6 +6,7 @@ import SearchBar from './components/SearchBar';
 class App extends Component {
   // TODO: SCRAMBLED CAST DATA SHOULD NOT BE IN STATE
   // TODO: TITLE SEARCH SHOULD NOT BE IN STATE
+  // TODO: SOME OF THESE DON'T NEED TO BE IN STATE
   constructor(props) {
     super(props)
     this.state = {
@@ -16,6 +17,16 @@ class App extends Component {
       castData: [],
       selections: {}
     }
+  }
+
+  updateMovieChoices(choices){
+    debugger;
+    // Clear out current movie data
+    this.setState({
+      movieChoices: choices,
+      movieData: [],
+      castData: []
+    })
   }
 
   render() {
@@ -32,7 +43,7 @@ class App extends Component {
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
               <SearchBar />
-              <GameBoard castData={this.state.castData} movieChoices={this.state.movieChoices}/>
+              <GameBoard castData={this.state.castData} movieChoices={this.state.movieChoices} updateMovieChoices={this.updateMovieChoices.bind(this)}/>
             </div>
             <div className="col-md-1"></div>
           </div>
