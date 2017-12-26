@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
+import KeyConfig from '../config.js'
 
 class SearchBar extends React.Component {
   submitSearch(event){
     event.preventDefault();
-    const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + config.TMDB_V3_KEY + "&query=" + encodeURI(this.state.titleSearch);
-    $.ajax({
-      url: searchUrl,
-      type: "get",
-      dataType: "JSONP",
-      success: function(data) {
-        this.props.updateMovieChoices(data.results.slice(0,3));
-      }.bind(this),
-      error: function(xhr, status, error){
-        console.log(error);
-      }.bind(this)
-    })
+    const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + KeyConfig.TMDB_V3_KEY + "&query=" + encodeURI(this.state.titleSearch);
+    fetch(searchUrl, {
+
+    });
   }
 
   render(){
