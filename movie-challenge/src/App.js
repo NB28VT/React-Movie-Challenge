@@ -20,10 +20,8 @@ class App extends Component {
   }
 
   updateMovieChoices(choices){
-    debugger;
-    // Clear out current movie data
     this.setState({
-      movieChoices: choices,
+      movieChoices: choices.slice(0,3),
       movieData: [],
       castData: []
     })
@@ -46,7 +44,7 @@ class App extends Component {
           <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
-              <SearchBar updateSearchValue={this.updateSearchValue.bind(this)}/>
+              <SearchBar updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}/>
               <GameBoard castData={this.state.castData} movieChoices={this.state.movieChoices} updateMovieChoices={this.updateMovieChoices.bind(this)}/>
             </div>
             <div className="col-md-1"></div>

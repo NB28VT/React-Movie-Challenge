@@ -4,11 +4,18 @@ import KeyConfig from '../config.js'
 class SearchBar extends React.Component {
   submitSearch(event){
     event.preventDefault();
-    const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + KeyConfig.TMDB_V3_KEY + "&query=" + encodeURI(this.props.titleSearch);
-    fetch(searchUrl).then(response => {
-        debugger;
-      }
-    )
+    const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + KeyConfig.TMDB_V3_KEY + "&query=" + encodeURI(this.props.searchValue);
+    // TODO: ERROR HANDLING
+    fetch(searchUrl).then((response) => response.json())
+      .then((responseJson) => {
+        const results = responseJson.results;
+        if (results.length > 0) {
+          this.props.updateMovieChoices(results);
+        } else {
+          // TODO: MAKE THIS MORE SLICK
+          alert("No movies found!");
+        }
+      })
   }
 
   handleSearchValue(event) {
@@ -21,7 +28,7 @@ class SearchBar extends React.Component {
       <form onSubmit={this.submitSearch.bind(this)}>
         <label>
           Search:
-          <input type="text" name="search" onChange={this.handleSearchValue.bind(this)} value={this.props.titleSearch}/>
+          <input type="text" name="search" onChange={this.handleSearchValue.bind(this)} value={this.props.searchValue}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
