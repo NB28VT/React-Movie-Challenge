@@ -1,5 +1,12 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+
+
+.moviePicker {
+  padding-top: 50px;
+  margin: auto;
+  height: 300px;
+  width: 700px;
+}
+
+.movieChoice {
+  height: 300px;
 }
