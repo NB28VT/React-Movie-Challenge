@@ -32,9 +32,11 @@ class App extends Component {
   }
 
   // TODO: INVESTIGATE REDUX THIS BUBBLED UP WAY TOO MUCH!
-  selectMovie(movieData) {
-    debugger;
-    this.setState({movieData: movieData});
+  selectMovie(movieData, castData) {
+    this.setState({
+      movieData: movieData,
+      castData: castData
+    });
   }
 
   render() {
@@ -51,7 +53,7 @@ class App extends Component {
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
               <SearchBar updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}/>
-              <GameBoard castData={this.state.castData} movieChoices={this.state.movieChoices} updateMovieChoices={this.updateMovieChoices.bind(this)} selectMovie={this.selectMovie.bind(this)}/>
+              <GameBoard castData={this.state.castData} movieChoices={this.state.movieChoices} selectMovie={this.selectMovie.bind(this)}/>
             </div>
             <div className="col-md-1"></div>
           </div>
