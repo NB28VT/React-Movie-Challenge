@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MoviePicker from './MoviePicker';
+import CastPicker from './CastPicker';
 
 class GameBoard extends React.Component {
   selectMovie(movieData, castData){
@@ -8,7 +9,7 @@ class GameBoard extends React.Component {
   // TODO: CAST COMPONENTS SHOULD HOLD LOGIC FOR RANDOMIZING CAST NAMES
   render(){
     if (this.props.castData.length > 0) {
-      return (<h2>Cast Data here</h2>);
+      return(<CastPicker castData={this.props.castData}/>)
     } else if (this.props.movieChoices.length > 0) {
       return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)}/>)
     } else {
