@@ -22,9 +22,9 @@ class CastPicker extends React.Component {
     const castMembers = this.props.castData;
     const scrambledSelections = this.scrambleCast();
     return(
-      <div className="castRow">
+      <div className="row castRow">
         {castMembers.map((castMember) => (
-          <div className="castMember">
+          <div>
             <CastMember castMember={castMember} scrambledSelections={scrambledSelections}/>
           </div>
         ))}
