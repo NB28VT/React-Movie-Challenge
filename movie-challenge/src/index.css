@@ -31,3 +31,11 @@
 .castMember img {
   max-width: 100%;
 }
+
+.correctAnswer img {
+  background-color: green;
+}
+
+.wrongAnswer img{
+  background-color: red;
+}
