@@ -4,7 +4,7 @@ import KeyConfig from '../config.js'
 class SearchBar extends React.Component {
   submitSearch(event){
     event.preventDefault();
-    const searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=" + KeyConfig.TMDB_V3_KEY + "&query=" + encodeURI(this.props.searchValue);
+    const searchUrl = "https://afternoon-sands-93107.herokuapp.com/movie_search?query=" + encodeURI(this.props.searchValue);
     // TODO: ERROR HANDLING
     fetch(searchUrl).then((response) => response.json())
       .then((responseJson) => {

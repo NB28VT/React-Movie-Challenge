@@ -9,7 +9,7 @@ class MovieChoice extends React.Component {
   }
 
   render() {
-    const thumbnailUrl = "https://image.tmdb.org/t/p/w500" +  this.props.movieData.poster_path + "?api_key=" + KeyConfig.TMDB_V3_KEY;
+    const thumbnailUrl = "https://afternoon-sands-93107.herokuapp.com/movie_thumbnail?poster_path=" + this.props.movieData.poster_path;
     return(
       <img src={thumbnailUrl} alt={this.props.movieData.title} className="img-thumbnail movieChoice" onClick={this.handleSelection.bind(this, this.props.movieData)}/>
     )
