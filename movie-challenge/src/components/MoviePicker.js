@@ -4,7 +4,7 @@ import KeyConfig from '../config.js'
 
 class MoviePicker extends React.Component {
   selectMovie(movieData) {
-    const castUrl = "https://api.themoviedb.org/3/movie/" + movieData.id + "/credits?api_key=" + KeyConfig.TMDB_V3_KEY;
+    const castUrl = "https://afternoon-sands-93107.herokuapp.com/movie_data?movie_id=" + movieData.id;
     fetch(castUrl).then((response) => response.json())
       .then((responseJson) => {
         const cast = responseJson.cast;
