@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import KeyConfig from '../config.js'
+import {API_ROOT} from '../api-config';
 
 class SearchBar extends React.Component {
   submitSearch(event){
     event.preventDefault();
-    const searchUrl = "https://afternoon-sands-93107.herokuapp.com/movie_search?query=" + encodeURI(this.props.searchValue);
+    const searchUrl = `${API_ROOT}/movie_search?query=` + encodeURI(this.props.searchValue);
     // TODO: ERROR HANDLING
     fetch(searchUrl).then((response) => response.json())
       .then((responseJson) => {

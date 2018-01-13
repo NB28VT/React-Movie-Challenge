@@ -21,7 +21,7 @@ class CastMember extends React.Component {
   }
 
   render() {
-    const thumbnailUrl = "https://afternoon-sands-93107.herokuapp.com/cast_thumbnail?profile_picture_path=" +  this.props.castMember.profile_path;
+    const thumbnailUrl = "https://afternoon-sands-93107.herokuapp.com/cast_thumbnail?profile_picture_path=" +  this.props.castMember.profile_path.substr(1);
     return(
       <div className={this.calculateDivClass()}>
         <img src={thumbnailUrl} alt={this.props.castMember.name} className="img-thumbnail castMemberThumbnail"/>

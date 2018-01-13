@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MovieChoice from './MovieChoice'
-import KeyConfig from '../config.js'
+import {API_ROOT} from '../api-config';
 
 class MoviePicker extends React.Component {
   selectMovie(movieData) {
-    const castUrl = "https://afternoon-sands-93107.herokuapp.com/movie_data?movie_id=" + movieData.id;
+    const castUrl = '#{API_ROOT}/movie_data?movie_id=' + movieData.id;
     fetch(castUrl).then((response) => response.json())
       .then((responseJson) => {
         const cast = responseJson.cast;
