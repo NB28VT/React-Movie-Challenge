@@ -10,7 +10,8 @@ class MovieChoice extends React.Component {
 
   render() {
     // this.props.movieData.poster_path.substr(1).replace(/\.jpg/, "") to remove leading "/" path before sending param an jpg of url. Pass ID only
-    const thumbnailUrl = `#{API_ROOT}/movie_thumbnail?poster_path=` + this.props.movieData.poster_path.substr(1).replace(/\.jpg/, "");
+
+    const thumbnailUrl = `${API_ROOT}/movie_thumbnail?poster_path=` + this.props.movieData.poster_path.substr(1).replace(/\.jpg/, "");
     return(
       <img src={thumbnailUrl} alt={this.props.movieData.title} className="img-thumbnail movieChoice" onClick={this.handleSelection.bind(this, this.props.movieData)}/>
     )

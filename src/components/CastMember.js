@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import KeyConfig from '../config.js'
+import {API_ROOT} from '../api-config';
 
 class CastMember extends React.Component {
   handleCastSelection(castMember) {
@@ -21,7 +21,7 @@ class CastMember extends React.Component {
   }
 
   render() {
-    const thumbnailUrl = "https://afternoon-sands-93107.herokuapp.com/cast_thumbnail?profile_picture_path=" +  this.props.castMember.profile_path.substr(1);
+    const thumbnailUrl = `${API_ROOT}/cast_thumbnail?profile_picture_path=` +  this.props.castMember.profile_path.substr(1).replace(/\.jpg/, "");
     return(
       <div className={this.calculateDivClass()}>
         <img src={thumbnailUrl} alt={this.props.castMember.name} className="img-thumbnail castMemberThumbnail"/>

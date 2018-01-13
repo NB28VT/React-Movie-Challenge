@@ -4,7 +4,7 @@ import {API_ROOT} from '../api-config';
 
 class MoviePicker extends React.Component {
   selectMovie(movieData) {
-    const castUrl = '#{API_ROOT}/movie_data?movie_id=' + movieData.id;
+    const castUrl = `${API_ROOT}/movie_data?movie_id=` + movieData.id;
     fetch(castUrl).then((response) => response.json())
       .then((responseJson) => {
         const cast = responseJson.cast;
