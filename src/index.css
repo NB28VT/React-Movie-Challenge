@@ -1,16 +1,71 @@
-.moviePicker {
-  padding-top: 50px;
-  margin: auto;
+body {
+  height: 100%;
+  background-image: url("../public/images/film_reels.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Limelight';
+}
+
+/*TODO: MAKE MORE RESPONSIVE?*/
+.searchModal {
   height: 300px;
-  width: 700px;
+  width: 600px;
+  background-image: url("../public/images/popcorn_spill_85_percent.png");
+  background-size: cover;
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  bottom: 20%;
+  right: 30%;
+  z-index: 1000;
+  border-radius: 25px;
+  /*font-family: 'Limelight';*/
+  text-shadow: 1px 1px white;
+  box-shadow: 0 8px 6px -6px #bdbdbd;
+}
+
+.searchModal h1 {
+  font-size: 80px;
+}
+
+.searchBar {
+  width: 80%;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+.modalMessage {
+  padding-left: 20px;
+}
+
+.moviePicker {
+  /*padding-top: 50px;
+  margin: auto;*/
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  bottom: 20%;
+  right: 30%;
+  height: 400px;
+  width: 100%;
+  text-shadow: 1px 1px white;
 }
 
 .movieChoice {
-  height: 300px;
+  height: 400px;
 }
 
-
 .castRow {
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  bottom: 20%;
+  right: 30%;
   padding-top: 20px;
   margin: auto;
   width: 700px;
@@ -26,7 +81,6 @@
 .castButtons {
   width: 100%;
 }
-
 
 .castMember img {
   max-width: 100%;

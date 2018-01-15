@@ -9,7 +9,7 @@ class GameBoard extends React.Component {
     } else if (this.props.movieChoices.length > 0) {
       return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.props.selectMovie} />)
     } else {
-      return (<h3>Welcome to Movie Challenge! Search movies to get started!</h3>)
+      return null;
     }
   }
 }
