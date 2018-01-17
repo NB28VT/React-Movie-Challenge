@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import GameBoard from './components/GameBoard';
 import SearchBar from './components/SearchBar';
+import SearchModal from './components/SearchModal';
+
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class App extends Component {
       movieData: [],
       castData: [],
       scrambledCast: [],
-      searchValue: ""
+      searchValue: "Enter a movie title or series",
+      showSearchModal: true
     }
   }
 
@@ -71,20 +74,23 @@ class App extends Component {
   }
 
   render() {
+    const { showSearchModal } = this.state
+
     return (
       <div>
-        <nav className="navbar navbar-inverse">
-          <div className="container-fluid">
-          <div className="navbar-header"></div>
-            <a className="navbar-brand" href="#">MovieMatcher5000</a>
-          </div>
-        </nav>
-        <div className="container-fluid">
+        <div id="gameContainer" className="container-fluid">
           <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
-              <SearchBar updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}/>
-              <GameBoard castData={this.state.castData} scrambledCast={this.state.scrambledCast} movieChoices={this.state.movieChoices} selectMovie={this.selectMovie.bind(this)} registerPick={this.registerPick.bind(this)}/>
+              <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>
+              Search</button>
+              <SearchModal open={showSearchModal}
+                updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}
+                onClose={()=>this.setState({showSearchModal: false})
+              }/>
+
+              {/* <SearchBar updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}/> */}
+              <GameBoard  castData={this.state.castData} scrambledCast={this.state.scrambledCast} movieChoices={this.state.movieChoices} selectMovie={this.selectMovie.bind(this)} registerPick={this.registerPick.bind(this)}/>
             </div>
             <div className="col-md-1"></div>
           </div>

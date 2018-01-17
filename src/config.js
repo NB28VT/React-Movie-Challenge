@@ -1,6 +1,0 @@
-const KeyConfig = {
-  TMDB_V3_KEY: 'd7e8ff7240e31dd0c9b51a3b46e3d613',
-  TMDB_V4_KEY: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2U4ZmY3MjQwZTMxZGQwYzliNTFhM2I0NmUzZDYxMyIsInN1YiI6IjVhMjVlMzhlMGUwYTI2NGNjMTBlMTRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BiH-SnA8cl2HW0hXj5a2i7VAbfq1EB8zbuoIZ0001Gk'
-}
-
-export default KeyConfig;

@@ -20,10 +20,16 @@ class MoviePicker extends React.Component {
   render() {
     const movieChoices = this.props.movieChoices;
     return (
-      <div className="moviePicker">
-        {movieChoices.map((movieChoice) => (
-          <MovieChoice movieData={movieChoice} selectMovie={this.selectMovie.bind(this)}/>
-        ))}
+      <div>
+        <div>
+
+        </div>
+        <div className="moviePicker">
+          <h1>Select Film:</h1>
+          {movieChoices.map((movieChoice) => (
+            <MovieChoice movieData={movieChoice} selectMovie={this.selectMovie.bind(this)}/>
+          ))}
+        </div>
       </div>
     )
   }
