@@ -6,9 +6,10 @@ class GameBoard extends React.Component {
   render(){
     if (this.props.castData.length > 0) {
       return(<CastPicker selections ={this.props.selections} castData={this.props.castData} scrambledCast={this.props.scrambledCast} registerPick={this.props.registerPick}/>)
-    } else if (this.props.movieChoices.length > 0) {
-      return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.props.selectMovie} />)
+    } else if (this.props.titleSearch) {
+      return (<MoviePicker titleSearch={this.props.titleSearch} selectMovie={this.props.selectMovie} />)
     } else {
+      // Pop up modal
       return null;
     }
   }
