@@ -6,8 +6,9 @@ class MoviePicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      movieData: [],
-      loading: true
+      movieChoices: [],
+      loading: true,
+      emptyResults: false
     }
   }
 
@@ -19,11 +20,18 @@ class MoviePicker extends React.Component {
       .then((responseJson) => {
         const results = responseJson.results;
         if (results.length > 0) {
-          this.setState({movieChoices: results.slice(0,3)});
+          const topThree = results.slice(0,3);
+
+          const movieChoices = topThree.map((movie) => (
+            {id: movie.id, thumbnailUrl: `${API_ROOT}/movie_thumbnail?poster_path=` + movie.poster_path.substr(1).replace(/\.jpg/, ""), title: movie.title}
+          ))
+
+          this.setState({movieChoices: movieChoices});
           this.setState({loading: false});
         } else {
-          // TODO: better error handling
-          alert("No movies found");
+          this.setState({loading: false});
+          this.setState({emptyResults: true});
+
         }
       })
   }
@@ -44,8 +52,15 @@ class MoviePicker extends React.Component {
   // }
 
   render() {
-    // Don't love this
-    if (this.state.loading) {
+
+    if (this.state.emptyResults) {
+      return (
+        <div className="noResults">
+          <h1>No Results found!</h1>
+        </div>
+      )
+    } else if (this.state.loading) {
+      // Don't love this
       return (
         <div>
           <div className="moviePicker">
@@ -62,7 +77,7 @@ class MoviePicker extends React.Component {
           <div className="moviePicker">
             <h1>Select Film:</h1>
             {this.state.movieChoices.map((movieChoice) => (
-              <MovieChoice thumbnailUrl={movieChoice.thumbnailUrl} movieID={movieChoice.id} selectMovie={this.selectMovie.bind(this)}/>
+              <MovieChoice thumbnailUrl={movieChoice.thumbnailUrl} movieID={movieChoice.id} title={movie.title} selectMovie={this.props.selectMovie}/>
             ))}
           </div>
         </div>

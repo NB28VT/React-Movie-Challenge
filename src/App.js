@@ -82,15 +82,13 @@ class App extends Component {
           <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
-              <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>
-              Search</button>
-              <SearchModal open={showSearchModal}
-                submitSearch={this.submitSearch.bind(this)}
-                onClose={()=>this.setState({showSearchModal: false})
+              <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
+              <SearchModal open={showSearchModal} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})
               }/>
 
               {/* <SearchBar updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}/> */}
-              <GameBoard  castData={this.state.castData} scrambledCast={this.state.scrambledCast} movieChoices={this.state.movieChoices} selectMovie={this.selectMovie.bind(this)} registerPick={this.registerPick.bind(this)}/>
+              <GameBoard searchValue={this.state.searchValue}/>
+              {/* <GameBoard  castData={this.state.castData} scrambledCast={this.state.scrambledCast} movieChoices={this.state.movieChoices} selectMovie={this.selectMovie.bind(this)} registerPick={this.registerPick.bind(this)}/> */}
             </div>
             <div className="col-md-1"></div>
           </div>
