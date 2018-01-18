@@ -28,8 +28,8 @@ class App extends Component {
     })
   }
 
-  updateSearchValue(value){
-    this.setState({searchValue: value})
+  submitSearch(event){
+    this.setState({searchValue: event.target.value})
   }
 
   selectMovie(movieData, castData) {
@@ -85,7 +85,7 @@ class App extends Component {
               <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>
               Search</button>
               <SearchModal open={showSearchModal}
-                updateSearchValue={this.updateSearchValue.bind(this)} updateMovieChoices={this.updateMovieChoices.bind(this)} searchValue={this.state.searchValue}
+                submitSearch={this.submitSearch.bind(this)}
                 onClose={()=>this.setState({showSearchModal: false})
               }/>
 
