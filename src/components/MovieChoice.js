@@ -5,7 +5,7 @@ class MovieChoice extends React.Component {
 
   render() {
     return(
-      <img src={thumbnailUrl} alt={this.props.movieData.title} className="img-thumbnail movieChoice" onClick={this.props.selectMovie(this.props.movieID)}/>
+      <img src={this.props.thumbnailUrl} alt={this.props.movieData.title} className="img-thumbnail movieChoice" onClick={this.props.selectMovie(this.props.movieID)}/>
     )
   }
 }

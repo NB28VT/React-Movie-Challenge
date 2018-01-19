@@ -76,8 +76,8 @@ class MoviePicker extends React.Component {
         <div>
           <div className="moviePicker">
             <h1>Select Film:</h1>
-            {this.state.movieChoices.map((movieChoice) => (
-              <MovieChoice thumbnailUrl={movieChoice.thumbnailUrl} movieID={movieChoice.id} title={movie.title} selectMovie={this.props.selectMovie}/>
+            {this.state.movieChoices.map((movie) => (
+              <MovieChoice thumbnailUrl={movie.thumbnailUrl} movieID={movie.id} title={movie.title} selectMovie={this.props.selectMovie}/>
             ))}
           </div>
         </div>
