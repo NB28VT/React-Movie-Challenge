@@ -10,6 +10,14 @@ class GameBoard extends React.Component {
     }
   }
 
+  componentWillReceiveProps(){
+    if (this.props.movieChoices.length > 0) {
+      alert("I LIKE TO MAKE WHEREWOLFF MOVIIES!");
+    } else {
+      console.log("no moobies");
+    }
+  }
+
   declareWinner(){
     // Pass this up.
     this.props.declareWinner;
@@ -18,15 +26,6 @@ class GameBoard extends React.Component {
   selectMovie(movieID){
     this.setState({movieID: movieID});
   }
-
-  // Maybe uncessary. Needs to get passed up to app js.
-  // registerPick() {
-  //
-  // }
-
-  // checkForWinner(){
-  //
-  // }
 
   render(){
     if (this.state.movieID) {

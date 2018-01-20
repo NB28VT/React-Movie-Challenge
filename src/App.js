@@ -1,40 +1,39 @@
 import React, { Component } from 'react';
+import {API_ROOT} from './api-config.js';
 import './App.css';
 import GameBoard from './components/GameBoard';
 import SearchBar from './components/SearchBar';
 import SearchModal from './components/SearchModal';
-
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       movieChoices: [],
-      movieData: [],
-      castData: [],
-      scrambledCast: [],
       searchValue: "Enter a movie title or series",
       showSearchModal: true
     }
   }
 
-  // updateMovieChoices(choices){
-  //   // Reset all data
-  //   this.setState({
-  //     movieChoices: choices.slice(0,3),
-  //     movieData: [],
-  //     castData: [],
-  //     scrambledCast: []
-  //   })
-  // }
-
-  submitSearch(event){
-    this.setState({searchValue: event.target.value})
+  updateSearch(e){
+    this.setState({searchValue: e.target.value});
   }
 
-
-  setMovie(){
-
+  submitSearch(event){
+    event.preventDefault;
+    debugger;
+    const searchUrl = `${API_ROOT}/movie_search?query=` + encodeURI(this.state.searchValue);
+    // TODO: ERROR HANDLING
+    fetch(searchUrl).then((response) => response.json())
+      .then((responseJson) => {
+        const results = responseJson.results;
+        if (results.length > 0) {
+          this.setState({movieChoices: results});
+        } else {
+          // TODO: MAKE THIS MORE SLICK
+          alert("No movies found!");
+        }
+      })
   }
 
   // selectMovie(movieData, castData) {
@@ -84,10 +83,6 @@ class App extends Component {
   render() {
     const { showSearchModal } = this.state
 
-    if (this.state.searchValue) {
-
-    }
-
     return (
       <div>
         <div id="gameContainer" className="container-fluid">
@@ -95,9 +90,10 @@ class App extends Component {
             <div className="col-md-1"></div>
             <div className="col-md-10 app">
               <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
-              <SearchModal open={showSearchModal} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
+              {/* TODO: MOVE BIND THIS OUT OF RENDER */}
+              <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
 
-              <GameBoard searchValue={this.state.searchValue}/>
+              <GameBoard movieChoices={this.state.movieChoices}/>
             </div>
             <div className="col-md-1"></div>
           </div>

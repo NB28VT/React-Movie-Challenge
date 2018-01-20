@@ -1,25 +1,6 @@
 import React, {Component} from 'react';
-import {API_ROOT} from '../api-config';
 
 class SearchModal extends Component {
-  // submitSearch(event){
-  //   debugger;
-  //   event.preventDefault();
-  //   this.props.onClose();
-  //   const searchUrl = `${API_ROOT}/movie_search?query=` + encodeURI(this.props.searchValue);
-  //   // TODO: ERROR HANDLING
-  //   fetch(searchUrl).then((response) => response.json())
-  //     .then((responseJson) => {
-  //       const results = responseJson.results;
-  //       if (results.length > 0) {
-  //         this.props.updateMovieChoices(results);
-  //       } else {
-  //         // TODO: MAKE THIS MORE SLICK
-  //         alert("No movies found!");
-  //       }
-  //     })
-  // }
-
   render() {
     return this.props.open ? (
       <div>
@@ -30,7 +11,7 @@ class SearchModal extends Component {
             <h3>The movie cast matching game</h3>
 
             <form onSubmit={this.props.submitSearch.bind(this)}>
-              <input type="text" className="searchBar" name="search"/>
+              <input type="text" className="searchBar" onChange={this.props.updateSearch.bind(this)}name="search"/>
               <input type="submit" value="Submit" />
             </form>
 

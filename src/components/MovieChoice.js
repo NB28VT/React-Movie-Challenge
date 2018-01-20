@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {API_ROOT} from '../api-config';
+
 
 class MovieChoice extends React.Component {
 

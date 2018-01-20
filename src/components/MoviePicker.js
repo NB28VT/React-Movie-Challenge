@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MovieChoice from './MovieChoice'
-import {API_ROOT} from '../api-config';
+
 
 class MoviePicker extends React.Component {
   constructor(props) {
@@ -12,29 +12,29 @@ class MoviePicker extends React.Component {
     }
   }
 
-  componentDidMount() {
-    let {titleSearch} = this.props;
-
-    const searchUrl = `${API_ROOT}/movie_search?query=` + encodeURI(titleSearch);
-    fetch(searchUrl).then((response) => response.json())
-      .then((responseJson) => {
-        const results = responseJson.results;
-        if (results.length > 0) {
-          const topThree = results.slice(0,3);
-
-          const movieChoices = topThree.map((movie) => (
-            {id: movie.id, thumbnailUrl: `${API_ROOT}/movie_thumbnail?poster_path=` + movie.poster_path.substr(1).replace(/\.jpg/, ""), title: movie.title}
-          ))
-
-          this.setState({movieChoices: movieChoices});
-          this.setState({loading: false});
-        } else {
-          this.setState({loading: false});
-          this.setState({emptyResults: true});
-
-        }
-      })
-  }
+  // componentDidMount() {
+  //   let {titleSearch} = this.props;
+  //
+  //   const searchUrl = `${API_ROOT}/movie_search?query=` + encodeURI(titleSearch);
+  //   fetch(searchUrl).then((response) => response.json())
+  //     .then((responseJson) => {
+  //       const results = responseJson.results;
+  //       if (results.length > 0) {
+  //         const topThree = results.slice(0,3);
+  //
+  //         const movieChoices = topThree.map((movie) => (
+  //           {id: movie.id, thumbnailUrl: `${API_ROOT}/movie_thumbnail?poster_path=` + movie.poster_path.substr(1).replace(/\.jpg/, ""), title: movie.title}
+  //         ))
+  //
+  //         this.setState({movieChoices: movieChoices});
+  //         this.setState({loading: false});
+  //       } else {
+  //         this.setState({loading: false});
+  //         this.setState({emptyResults: true});
+  //
+  //       }
+  //     })
+  // }
 
   // TODO: update
   // selectMovie(movieData) {
