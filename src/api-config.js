@@ -7,4 +7,4 @@ if(hostname === "whos-init.herokuapp.com") {
   backendHost = "http://localhost:4567";
 }
 
-export const apiRoot = backendHost;
+export const API_ROOT = backendHost;

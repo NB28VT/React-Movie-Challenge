@@ -10,8 +10,8 @@ class SearchModal extends Component {
             <h1>Who's In It?</h1>
             <h3>The movie cast matching game</h3>
 
-            <form onSubmit={this.props.submitSearch.bind(this)}>
-              <input type="text" className="searchBar" onChange={this.props.updateSearch.bind(this)}name="search"/>
+            <form onSubmit={this.props.submitSearch}>
+              <input type="text" className="searchBar" onChange={this.props.updateSearch}name="search"/>
               <input type="submit" value="Submit" />
             </form>
 
