@@ -21,14 +21,16 @@ class App extends Component {
   }
 
   submitSearch(event){
-    event.preventDefault;
+    event.preventDefault();
     const searchUrl = `${apiConfigs.API_ROOT}/movie_search?query=` + encodeURI(this.state.searchValue);
-    // TODO: ERROR HANDLING
+
     fetch(searchUrl).then((response) => response.json())
       .then((responseJson) => {
         const results = responseJson.results;
+        // console.log(results);
         if (results.length > 0) {
-          // this.setState({movieChoices: results});
+          this.setState({movieChoices: results});
+          // console.log(this.state);
         } else {
           // TODO: MAKE THIS MORE SLICK
           alert("No movies found!");
@@ -93,7 +95,7 @@ class App extends Component {
               {/* TODO: MOVE BIND THIS OUT OF RENDER */}
               <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
 
-              {/* <GameBoard movieChoices={this.state.movieChoices}/> */}
+              <GameBoard movieChoices={this.state.movieChoices}/>
             </div>
             <div className="col-md-1"></div>
           </div>

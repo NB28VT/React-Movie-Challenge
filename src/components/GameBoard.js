@@ -11,11 +11,12 @@ class GameBoard extends React.Component {
   }
 
   componentWillReceiveProps(){
-    if (this.props.movieChoices.length > 0) {
-      alert("I LIKE TO MAKE WHEREWOLFF MOVIIES!");
-    } else {
-      console.log("no moobies");
-    }
+    console.log(this.props.movieChoices);
+    // if (this.props.movieChoices.length > 0) {
+    //   alert("Movies please!");
+    // } else {
+    //   console.log("no moobies");
+    // }
   }
 
   declareWinner(){
