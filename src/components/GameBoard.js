@@ -12,13 +12,13 @@ class GameBoard extends React.Component {
     }
   }
 
-  componentDidMount(){
-    if (this.props.movieChoices.length > 0) {
-      alert("We havvvveee movies!");
-    } else {
-      console.log("no moobies");
-    }
-  }
+  // componentDidMount(){
+  //   if (this.props.movieChoices.length > 0) {
+  //     alert("We havvvveee movies!");
+  //   } else {
+  //     console.log("no moobies");
+  //   }
+  // }
 
   declareWinner(){
     // Pass this up.
@@ -36,7 +36,7 @@ class GameBoard extends React.Component {
       return (<h1>Awww yeah here's the movie</h1>);
       // return(<CastPicker movieID={this.state.movieID}}/>)
     } else if (this.props.movieChoices.length > 0) {
-      return (<MoviePicker searchValue={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)} />)
+      return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)} />)
     } else {
       // Pop up modal?
       return null;
