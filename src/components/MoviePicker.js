@@ -3,14 +3,6 @@ import MovieChoice from './MovieChoice'
 
 
 class MoviePicker extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      movieChoices: [],
-      loading: true,
-      emptyResults: false
-    }
-  }
 
   // componentDidMount() {
   //   let {titleSearch} = this.props;

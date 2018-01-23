@@ -27,10 +27,8 @@ class App extends Component {
     fetch(searchUrl).then((response) => response.json())
       .then((responseJson) => {
         const results = responseJson.results;
-        // console.log(results);
         if (results.length > 0) {
-          this.setState({movieChoices: results});
-          // console.log(this.state);
+          this.setState({movieChoices: results.slice(0,3)});
         } else {
           // TODO: MAKE THIS MORE SLICK
           alert("No movies found!");
@@ -85,23 +83,31 @@ class App extends Component {
   render() {
     const { showSearchModal } = this.state
 
-    return (
-      <div>
-        <div id="gameContainer" className="container-fluid">
-          <div className="row">
-            <div className="col-md-1"></div>
-            <div className="col-md-10 app">
-              <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
-              {/* TODO: MOVE BIND THIS OUT OF RENDER */}
-              <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
-
-              <GameBoard movieChoices={this.state.movieChoices}/>
+    if (this.state.movieChoices.length > 0) {
+      return (
+        <div>
+          <div id="gameContainer" className="container-fluid">
+            <div className="row">
+              <div className="col-md-1"></div>
+              <div className="col-md-10 app">
+                <GameBoard movieChoices={this.state.movieChoices}/>
+              </div>
+              <div className="col-md-1"></div>
             </div>
-            <div className="col-md-1"></div>
           </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return(
+        <div>
+          <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
+          {/* TODO: MOVE BIND THIS OUT OF RENDER */}
+          <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
+        </div>
+      )
+    }
+
+
   }
 }
 
