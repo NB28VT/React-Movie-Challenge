@@ -29,12 +29,9 @@ class GameBoard extends React.Component {
     this.setState({movieID: movieID});
   }
 
-
   render(){
     if (this.state.movieID) {
-      // testing
-      return (<h1>Awww yeah here's the movie</h1>);
-      // return(<CastPicker movieID={this.state.movieID}}/>)
+      return(<CastPicker movieID={this.state.movieID}/>)
     } else if (this.props.movieChoices.length > 0) {
       return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)} />)
     } else {
