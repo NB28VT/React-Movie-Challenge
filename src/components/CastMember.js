@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CastThumbnail from './CastThumbnail'
+import CastSelections from './CastSelections'
 import * as apiConfigs from '../api-config.js';
 // TODO: maybe a placeholder for a profile pic?
 // TODO: if no image is available, don't display
@@ -14,14 +16,13 @@ class CastMember extends React.Component {
     })
   }
 
-
   componentWillMount(){
     this.loadProfilePicture();
   }
 
   loadProfilePicture(){
     const profilePicture = new Image()
-    profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.posterPath.substr(1).replace(/\.jpg/, "");
+    profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.castMember.profile_path.substr(1).replace(/\.jpg/, "");
     profilePicture.onload = () => {
       this.setState({
         imageSource: profilePicture.src,
@@ -30,34 +31,29 @@ class CastMember extends React.Component {
     }
   }
 
-  // handleCastSelection(castMember) {
-  //   if (castMember.id === this.props.castMember.id) {
-  //     this.props.registerPick(this.props.castMember.id, true);
-  //   } else {
-  //     this.props.registerPick(this.props.castMember.id, false);
-  //   }
-  // }
-  //
-  calculateDivClass( ){
+  calculateImageClass( ){
     if (this.state.correct === true) {
         return "correctAnswer";
     } else if (this.state.correct === false) {
         return "wrongAnswer";
     }
   }
+  registerPick(selectedID){
+    if (this.props.castMember.id === selectedID) {
+      this.setState({correct: true});
+    } else {
+      this.setState({correct: false});
+    }
+  }
 
-  // render cast list as separate component?
-
-  // Try separate components:
   render() {
     return(
       <div className="castMember">
-        <CastThumbnail thumbnailUrl={this.state.imageSource} className={this.calculateImageClass()}/>
-        <CastSelections selections={this.props.scrambledSelections} registerPick={this.registerPick}/>
+        <CastThumbnail imageSource={this.state.imageSource} name={this.props.castMember.name} imageClass={this.calculateImageClass()}/>
+        <CastSelections selections={this.props.scrambledSelections} registerPick={this.registerPick.bind(this)}/>
       </div>
     )
   }
-
 
   // render() {
   //   const thumbnailUrl = "Beh";
@@ -73,6 +69,15 @@ class CastMember extends React.Component {
   //     </div>
   //   )
   // }
+
+  // handleCastSelection(castMember) {
+  //   if (castMember.id === this.props.castMember.id) {
+  //     this.props.registerPick(this.props.castMember.id, true);
+  //   } else {
+  //     this.props.registerPick(this.props.castMember.id, false);
+  //   }
+  // }
+  //
 }
 
 export default CastMember

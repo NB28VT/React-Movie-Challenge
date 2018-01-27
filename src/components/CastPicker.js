@@ -52,8 +52,6 @@ class CastPicker extends React.Component {
   render(){
     // TODO: NICER LOOKING LOADING MESSAGE
     if (this.state.castLoaded) {
-      return(<h1>Loading...</h1>  )
-    } else {
       return(
         <div className="row castRow">
           {this.state.scrambledSelections.map((castMember) => (
@@ -63,6 +61,8 @@ class CastPicker extends React.Component {
           ))}
         </div>
       )
+    } else {
+      return(<h1>Loading...</h1>)
     }
   }
 }

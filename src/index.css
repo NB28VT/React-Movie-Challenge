@@ -87,10 +87,13 @@ body {
   max-width: 100%;
 }
 
-.correctAnswer img {
-  background-color: green;
+.correctAnswer {
+  border: 8px solid;
+  border-color: green;
+  /* background-color: green; */
 }
 
-.wrongAnswer img{
-  background-color: red;
+.wrongAnswer {
+  border: 8px solid;
+  border-color: red;
 }
