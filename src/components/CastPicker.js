@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CastMember from "./CastMember"
 import * as apiConfigs from '../api-config.js';
+var _ = require("lodash")
 
 class CastPicker extends React.Component {
   constructor(props){
@@ -21,7 +22,14 @@ class CastPicker extends React.Component {
         .then((responseJson) => {
           const cast = responseJson.cast;
           if (cast.length > 0) {
-            this.scrambleCastSelections(cast.slice(0,5));
+            const filteredCast = cast.slice(0,5).map(function(c){
+                // Lodash!
+                var filtered = _.pick(c, 'id', 'name', 'profile_path');
+                filtered.correct = null;
+                return filtered;
+            });
+
+            this.scrambleCastSelections(filteredCast);
           } else {
             // TODO: ADD ERROR HANDLING
             console.log("Error getting cast");
@@ -41,13 +49,21 @@ class CastPicker extends React.Component {
       castArray[remainingCount] = castArray[index];
       castArray[index] = top;
     }
-    // TODO: RETURN ONLY VALUES WE CARE ABOUT (ID, NAME)
+
     this.setState({
       scrambledSelections: castArray,
       castLoaded: true
     });
   }
 
+  updatePick(castID, result) {
+    debugger;
+    this.checkForWinner();
+  }
+
+  checkForWinner(){
+    
+  }
 
   render(){
     // TODO: NICER LOOKING LOADING MESSAGE
@@ -56,7 +72,7 @@ class CastPicker extends React.Component {
         <div className="row castRow">
           {this.state.scrambledSelections.map((castMember) => (
             <div>
-              <CastMember castMember={castMember} scrambledSelections={this.state.scrambledSelections} registerPick={this.props.registerPick} />
+              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
             </div>
           ))}
         </div>

@@ -7,12 +7,12 @@ import * as apiConfigs from '../api-config.js';
 import filmCountdown from '../../public/images/film_countdown.gif'
 
 class CastMember extends React.Component {
+  // change correct to props (in cast picker)
   constructor(props) {
     super(props)
     this.state = ({
       imageSource: filmCountdown,
       imageLoaded: false,
-      correct: null
     })
   }
 
@@ -22,7 +22,7 @@ class CastMember extends React.Component {
 
   loadProfilePicture(){
     const profilePicture = new Image()
-    profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.castMember.profile_path.substr(1).replace(/\.jpg/, "");
+    profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.profileImageSource.substr(1).replace(/\.jpg/, "");
     profilePicture.onload = () => {
       this.setState({
         imageSource: profilePicture.src,
@@ -32,24 +32,24 @@ class CastMember extends React.Component {
   }
 
   calculateImageClass( ){
-    if (this.state.correct === true) {
+    if (this.props.correct === true) {
         return "correctAnswer";
-    } else if (this.state.correct === false) {
+    } else if (this.props.correct === false) {
         return "wrongAnswer";
     }
   }
   registerPick(selectedID){
-    if (this.props.castMember.id === selectedID) {
-      this.setState({correct: true});
+    if (this.props.id === selectedID) {
+      this.props.updatePick(this.props.id, true)
     } else {
-      this.setState({correct: false});
+      this.props.updatePick(this.props.id, false)
     }
   }
 
   render() {
     return(
       <div className="castMember">
-        <CastThumbnail imageSource={this.state.imageSource} name={this.props.castMember.name} imageClass={this.calculateImageClass()}/>
+        <CastThumbnail imageSource={this.state.imageSource} name={this.props.name} imageClass={this.calculateImageClass()}/>
         <CastSelections selections={this.props.scrambledSelections} registerPick={this.registerPick.bind(this)}/>
       </div>
     )

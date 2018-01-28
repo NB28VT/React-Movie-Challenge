@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// TODO: DETERMINE WHY WE NEED TO IMPORT ALL HERE FOR API_ROOT TO BE DEFINED
 import * as apiConfigs from './api-config.js';
 import './App.css';
 import GameBoard from './components/GameBoard';
