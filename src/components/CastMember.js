@@ -50,7 +50,7 @@ class CastMember extends React.Component {
     return(
       <div className="castMember">
         <CastThumbnail imageSource={this.state.imageSource} name={this.props.name} imageClass={this.calculateImageClass()}/>
-        <CastSelections selections={this.props.scrambledSelections} registerPick={this.registerPick.bind(this)}/>
+        <CastSelections selections={this.props.selections} registerPick={this.registerPick.bind(this)}/>
       </div>
     )
   }
