@@ -10,14 +10,18 @@ class MovieChoice extends React.Component {
     }
   }
 
-  componentWillMount(){
-    const moviePoster = new Image()
-    moviePoster.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.posterPath.substr(1).replace(/\.jpg/, "");
-    moviePoster.onload = () => {
-      this.setState({
-        imageSource: moviePoster.src,
-        selectable: true
-      })
+  componentDidMount(){
+    if (this.props.posterPath) {
+      const moviePoster = new Image()
+      moviePoster.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.posterPath.substr(1).replace(/\.jpg/, "");
+      moviePoster.onload = () => {
+        this.setState({
+          imageSource: moviePoster.src,
+          selectable: true
+        })
+      }
+    } else {
+      // TODO: NO POSTER, SO DISPLAY PLACEHOLDER WITH NAME ONLY
     }
   }
 

@@ -11,8 +11,8 @@ class CastPicker extends React.Component {
       selections: []
     }
   }
-  // vs component did mount?
-  componentWillMount() {
+
+  componentDidMount() {
     this.loadMovieCast();
   }
 

@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import CastThumbnail from './CastThumbnail'
 import CastSelections from './CastSelections'
 import * as apiConfigs from '../api-config.js';
-// TODO: maybe a placeholder for a profile pic?
-// TODO: if no image is available, don't display
 import filmCountdown from '../../public/images/film_countdown.gif'
 
 class CastMember extends React.Component {
-  // change correct to props (in cast picker)
   constructor(props) {
     super(props)
     this.state = ({
@@ -16,7 +13,7 @@ class CastMember extends React.Component {
     })
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.loadProfilePicture();
   }
 
@@ -54,30 +51,6 @@ class CastMember extends React.Component {
       </div>
     )
   }
-
-  // render() {
-  //   const thumbnailUrl = "Beh";
-  //   // const thumbnailUrl = `${API_ROOT}/cast_thumbnail?profile_picture_path=` +  this.props.castMember.profile_path.substr(1).replace(/\.jpg/, "");
-  //   return(
-  //     <div className={this.calculateDivClass()}>
-  //       <img src={thumbnailUrl} alt={this.props.castMember.name} className="img-thumbnail castMemberThumbnail"/>
-  //       <div className= "btn-group-vertical castButtons" role="group">
-  //         {this.props.scrambledSelections.map((scrambledCastMember) => (
-  //            <button type="button" className="btn btn-default" onClick={this.handleCastSelection.bind(this, scrambledCastMember)}>{scrambledCastMember.name}</button>
-  //         ))}
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
-  // handleCastSelection(castMember) {
-  //   if (castMember.id === this.props.castMember.id) {
-  //     this.props.registerPick(this.props.castMember.id, true);
-  //   } else {
-  //     this.props.registerPick(this.props.castMember.id, false);
-  //   }
-  // }
-  //
 }
 
 export default CastMember

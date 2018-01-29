@@ -11,15 +11,7 @@ class GameBoard extends React.Component {
       movieID: null
     }
   }
-
-  // componentDidMount(){
-  //   if (this.props.movieChoices.length > 0) {
-  //     alert("We havvvveee movies!");
-  //   } else {
-  //     console.log("no moobies");
-  //   }
-  // }
-
+  
   declareWinner(){
     // Pass this up.
     this.props.declareWinner;
