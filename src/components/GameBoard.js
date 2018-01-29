@@ -3,12 +3,31 @@ import MoviePicker from './MoviePicker';
 import CastPicker from './CastPicker';
 
 class GameBoard extends React.Component {
+  // TODO: ADD RESET BUTTON FOR GAMEBOARD
+  constructor(props){
+    super(props)
+
+    this.state = {
+      movieID: null
+    }
+  }
+  
+  declareWinner(){
+    // Pass this up.
+    this.props.declareWinner;
+  }
+
+  selectMovie(movieID){
+    this.setState({movieID: movieID});
+  }
+
   render(){
-    if (this.props.castData.length > 0) {
-      return(<CastPicker selections ={this.props.selections} castData={this.props.castData} scrambledCast={this.props.scrambledCast} registerPick={this.props.registerPick}/>)
+    if (this.state.movieID) {
+      return(<CastPicker movieID={this.state.movieID}/>)
     } else if (this.props.movieChoices.length > 0) {
-      return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.props.selectMovie} />)
+      return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)} />)
     } else {
+      // Pop up modal?
       return null;
     }
   }

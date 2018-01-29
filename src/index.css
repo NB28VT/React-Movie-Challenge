@@ -19,7 +19,6 @@ body {
   right: 30%;
   z-index: 1000;
   border-radius: 25px;
-  /*font-family: 'Limelight';*/
   text-shadow: 1px 1px white;
   box-shadow: 0 8px 6px -6px #bdbdbd;
 }
@@ -44,8 +43,6 @@ body {
 }
 
 .moviePicker {
-  /*padding-top: 50px;
-  margin: auto;*/
   position: fixed;
   top: 20%;
   left: 25%;
@@ -58,6 +55,7 @@ body {
 
 .movieChoice {
   height: 400px;
+  width: 270px;
 }
 
 .castRow {
@@ -86,10 +84,12 @@ body {
   max-width: 100%;
 }
 
-.correctAnswer img {
-  background-color: green;
+.correctAnswer {
+  border: 8px solid;
+  border-color: green;
 }
 
-.wrongAnswer img{
-  background-color: red;
+.wrongAnswer {
+  border: 8px solid;
+  border-color: red;
 }
