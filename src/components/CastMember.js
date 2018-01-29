@@ -18,14 +18,19 @@ class CastMember extends React.Component {
   }
 
   loadProfilePicture(){
-    const profilePicture = new Image()
-    profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.profileImageSource.substr(1).replace(/\.jpg/, "");
-    profilePicture.onload = () => {
-      this.setState({
-        imageSource: profilePicture.src,
-        imageLoaded: true
-      })
+    if (this.props.profileImageSource) {
+      const profilePicture = new Image()
+      profilePicture.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.profileImageSource.substr(1).replace(/\.jpg/, "");
+      profilePicture.onload = () => {
+        this.setState({
+          imageSource: profilePicture.src,
+          imageLoaded: true
+        })
+      }
+    } else {
+      // TODO: Don't load cast members that don't have photos
     }
+
   }
 
   calculateImageClass( ){

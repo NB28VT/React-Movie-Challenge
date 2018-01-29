@@ -17,6 +17,7 @@ class CastPicker extends React.Component {
   }
 
   loadMovieCast(){
+      // TODO: only load first 5 cast members that have an available profile url
       const castUrl = `${apiConfigs.API_ROOT}/movie_data?movie_id=` + this.props.movieID;
       fetch(castUrl).then((response) => response.json())
         .then((responseJson) => {
@@ -39,6 +40,7 @@ class CastPicker extends React.Component {
   }
 
   scrambleCastSelections(castMembers){
+    // TODO: fix selections so not in the same order in the buttons
     const castArray = castMembers.slice();
     // Fisher-Yates shuffle
     var remainingCount = castArray.length, top, index;
