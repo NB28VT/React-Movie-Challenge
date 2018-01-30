@@ -63,6 +63,8 @@ body {
 .posterPlaceholder {
   text-align: center;
   vertical-align: middle;
+  background-image: url("../public/images/placeholderFilmReel.png");
+  background-size: contain;
 }
 
 .castRow {
