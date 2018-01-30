@@ -54,8 +54,17 @@ body {
 }
 
 .movieChoice {
+  float: left;
+  display: block;
   height: 400px;
   width: 270px;
+}
+
+.posterPlaceholder {
+  text-align: center;
+  vertical-align: middle;
+  background-image: url("../public/images/placeholderFilmReel.png");
+  background-size: contain;
 }
 
 .castRow {

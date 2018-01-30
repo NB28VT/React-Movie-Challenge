@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PosterPlaceholder from './PosterPlaceholder';
 import * as apiConfigs from '../api-config.js';
 import filmCountdown from '../../public/images/film_countdown.gif'
 class MovieChoice extends React.Component {
@@ -6,7 +7,9 @@ class MovieChoice extends React.Component {
     super(props)
     this.state = {
       imageSource: filmCountdown,
-      selectable: false
+      selectable: false,
+      needsPlaceholder: false
+
     }
   }
 
@@ -15,13 +18,10 @@ class MovieChoice extends React.Component {
       const moviePoster = new Image()
       moviePoster.src = `${apiConfigs.API_ROOT}/movie_thumbnail?poster_path=` + this.props.posterPath.substr(1).replace(/\.jpg/, "");
       moviePoster.onload = () => {
-        this.setState({
-          imageSource: moviePoster.src,
-          selectable: true
-        })
+        this.setState({imageSource: moviePoster.src, selectable: true})
       }
     } else {
-      // TODO: NO POSTER, SO DISPLAY PLACEHOLDER WITH NAME ONLY
+      this.setState({ needsPlaceholder: true, selectable: true})
     }
   }
 
@@ -33,9 +33,12 @@ class MovieChoice extends React.Component {
   }
 
   render() {
-    return(
-      <img src={this.state.imageSource}  onClick={this.selectMovie.bind(this)} alt={this.props.title} className="img-thumbnail movieChoice"/>
-    )
+    if (this.state.needsPlaceholder) {
+      return(<PosterPlaceholder onClick={this.selectMovie.bind(this)} alt={this.props.title} name={this.props.title} release_date={this.props.release_date}/>)
+    } else {
+      return(<img src={this.state.imageSource}  onClick={this.selectMovie.bind(this)} alt={this.props.title} className="img-thumbnail movieChoice"/>)
+    }
+
   }
 }
 

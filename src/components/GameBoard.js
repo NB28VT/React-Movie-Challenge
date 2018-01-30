@@ -11,7 +11,7 @@ class GameBoard extends React.Component {
       movieID: null
     }
   }
-  
+
   declareWinner(){
     // Pass this up.
     this.props.declareWinner;

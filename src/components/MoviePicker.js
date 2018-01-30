@@ -9,7 +9,7 @@ class MoviePicker extends React.Component {
           <div className="moviePicker">
             <h1>Select Film:</h1>
             {this.props.movieChoices.map((movie) => (
-              <MovieChoice posterPath={movie.poster_path} movieID={movie.id} title={movie.title} selectMovie={this.props.selectMovie}/>
+              <MovieChoice posterPath={movie.poster_path} movieID={movie.id} title={movie.title} release_date={movie.release_date} selectMovie={this.props.selectMovie}/>
             ))}
           </div>
         </div>
