@@ -8,7 +8,7 @@ class PosterPlaceholder extends React.Component {
 
   render() {
     return (
-      <div className="img-thumbnail movieChoice posterPlaceholder">
+      <div className="img-thumbnail movieChoice posterPlaceholder" onClick={this.props.selectMovie}>
         <h1>{this.props.name} ({this.parseReleaseDate()})</h1>
       </div>
     )
