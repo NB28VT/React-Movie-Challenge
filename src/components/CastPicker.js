@@ -23,7 +23,7 @@ class CastPicker extends React.Component {
         .then((responseJson) => {
           const cast = responseJson.cast;
           if (cast.length > 0) {
-            const filteredCast = cast.slice(0,5).map(function(c){
+            const filteredCast = cast.filter(checkProfilePresence).slice(0,5).map(function(c){
                 // Lodash!
                 var filtered = _.pick(c, 'id', 'name', 'profile_path');
                 // Add correct attribute to all for tracking gameplay
@@ -37,6 +37,10 @@ class CastPicker extends React.Component {
             console.log("Error getting cast");
           }
         })
+  }
+
+  checkProfilePresence(castMember){
+    return castMember.profile_path != null;
   }
 
   scrambleCastSelections(castMembers){
