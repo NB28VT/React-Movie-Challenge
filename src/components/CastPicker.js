@@ -8,6 +8,7 @@ class CastPicker extends React.Component {
     super(props)
     this.state = {
       castLoaded: false,
+      scrambledSelections: [],
       selections: []
     }
   }
@@ -23,7 +24,7 @@ class CastPicker extends React.Component {
         .then((responseJson) => {
           const cast = responseJson.cast;
           if (cast.length > 0) {
-            const filteredCast = cast.slice(0,5).map(function(c){
+            const filteredCast = cast.filter(this.checkProfilePresence).slice(0,5).map(function(c){
                 // Lodash!
                 var filtered = _.pick(c, 'id', 'name', 'profile_path');
                 // Add correct attribute to all for tracking gameplay
@@ -31,12 +32,18 @@ class CastPicker extends React.Component {
                 return filtered;
             });
 
+            this.setState({selections: filteredCast});
             this.scrambleCastSelections(filteredCast);
+
           } else {
             // TODO: ADD ERROR HANDLING
             console.log("Error getting cast");
           }
         })
+  }
+
+  checkProfilePresence(castMember){
+    return castMember.profile_path != null;
   }
 
   scrambleCastSelections(castMembers){
@@ -54,7 +61,7 @@ class CastPicker extends React.Component {
     }
 
     this.setState({
-      selections: castArray,
+      scrambledSelections: castArray,
       castLoaded: true
     });
   }
@@ -81,7 +88,7 @@ class CastPicker extends React.Component {
         <div className="row castRow">
           {this.state.selections.map((castMember) => (
             <div>
-              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} selections={this.state.selections} updatePick={this.updatePick.bind(this)} />
+              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
             </div>
           ))}
         </div>

@@ -34,7 +34,7 @@ class MovieChoice extends React.Component {
 
   render() {
     if (this.state.needsPlaceholder) {
-      return(<PosterPlaceholder onClick={this.selectMovie.bind(this)} alt={this.props.title} name={this.props.title} release_date={this.props.release_date}/>)
+      return(<PosterPlaceholder selectMovie={this.selectMovie.bind(this)} alt={this.props.title} name={this.props.title} release_date={this.props.release_date}/>)
     } else {
       return(<img src={this.state.imageSource}  onClick={this.selectMovie.bind(this)} alt={this.props.title} className="img-thumbnail movieChoice"/>)
     }

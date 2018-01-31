@@ -29,6 +29,7 @@ class CastMember extends React.Component {
       }
     } else {
       // TODO: Don't load cast members that don't have photos
+      // Stop render somehow?
     }
 
   }
@@ -52,7 +53,7 @@ class CastMember extends React.Component {
     return(
       <div className="castMember">
         <CastThumbnail imageSource={this.state.imageSource} name={this.props.name} imageClass={this.calculateImageClass()}/>
-        <CastSelections selections={this.props.selections} registerPick={this.registerPick.bind(this)}/>
+        <CastSelections scrambledSelections={this.props.scrambledSelections} registerPick={this.registerPick.bind(this)}/>
       </div>
     )
   }
