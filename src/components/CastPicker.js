@@ -8,6 +8,7 @@ class CastPicker extends React.Component {
     super(props)
     this.state = {
       castLoaded: false,
+      scrambledSelections: [],
       selections: []
     }
   }
@@ -31,7 +32,9 @@ class CastPicker extends React.Component {
                 return filtered;
             });
 
+            this.setState({selections: filteredCast});
             this.scrambleCastSelections(filteredCast);
+
           } else {
             // TODO: ADD ERROR HANDLING
             console.log("Error getting cast");
@@ -58,7 +61,7 @@ class CastPicker extends React.Component {
     }
 
     this.setState({
-      selections: castArray,
+      scrambledSelections: castArray,
       castLoaded: true
     });
   }
@@ -85,7 +88,7 @@ class CastPicker extends React.Component {
         <div className="row castRow">
           {this.state.selections.map((castMember) => (
             <div>
-              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} selections={this.state.selections} updatePick={this.updatePick.bind(this)} />
+              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
             </div>
           ))}
         </div>
