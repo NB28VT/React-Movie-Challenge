@@ -14,7 +14,7 @@ class GameBoard extends Component {
 
   declareWinner(){
     // Pass this up.
-    this.props.declareWinner;
+    this.props.declareWinner();
   }
 
   selectMovie(movieID){
