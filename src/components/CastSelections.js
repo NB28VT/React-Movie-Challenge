@@ -5,7 +5,7 @@ class CastSelections extends Component {
     return (
       <div className="btn-group-vertical castButtons" role="group">
         {this.props.scrambledSelections.map((castMember) => (
-           <button type="button" className="btn btn-default" onClick={this.props.registerPick.bind(this, castMember.id)}>{castMember.name}</button>
+           <button key={castMember.id} type="button" className="btn btn-default" onClick={this.props.registerPick.bind(this, castMember.id)}>{castMember.name}</button>
         ))}
       </div>
     )

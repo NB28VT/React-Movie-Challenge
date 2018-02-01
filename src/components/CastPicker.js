@@ -76,8 +76,6 @@ class CastPicker extends Component {
   checkForWinner(){
     if (this.state.selections.every(selection => selection.correct)) {
       alert("youwinnnnn");
-    } else {
-      console.log("nope");
     }
   }
 
@@ -87,7 +85,7 @@ class CastPicker extends Component {
       return(
         <div className="row castRow">
           {this.state.selections.map((castMember) => (
-            <div>
+            <div key={castMember.id}>
               <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
             </div>
           ))}
