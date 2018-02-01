@@ -4,7 +4,7 @@ import CastSelections from './CastSelections'
 import * as apiConfigs from '../api-config.js';
 import filmCountdown from '../../public/images/film_countdown.gif'
 
-class CastMember extends React.Component {
+class CastMember extends Component {
   constructor(props) {
     super(props)
     this.state = ({

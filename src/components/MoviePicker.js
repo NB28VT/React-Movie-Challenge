@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MovieChoice from './MovieChoice'
 
 
-class MoviePicker extends React.Component {
+class MoviePicker extends Component {
   render() {
       return (
         <div>

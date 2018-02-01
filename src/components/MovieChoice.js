@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PosterPlaceholder from './PosterPlaceholder';
 import * as apiConfigs from '../api-config.js';
 import filmCountdown from '../../public/images/film_countdown.gif'
-class MovieChoice extends React.Component {
+class MovieChoice extends Component {
   constructor(props){
     super(props)
     this.state = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-class PosterPlaceholder extends React.Component {
+class PosterPlaceholder extends Component {
 
   parseReleaseDate() {
     const d = new Date(this.props.release_date);

@@ -3,7 +3,7 @@ import CastMember from "./CastMember"
 import * as apiConfigs from '../api-config.js';
 var _ = require("lodash")
 
-class CastPicker extends React.Component {
+class CastPicker extends Component {
   constructor(props){
     super(props)
     this.state = {

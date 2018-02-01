@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CastSelections extends React.Component {
+class CastSelections extends Component {
   render() {
     return (
       <div className= "btn-group-vertical castButtons" role="group">

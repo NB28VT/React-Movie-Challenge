@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MoviePicker from './MoviePicker';
 import CastPicker from './CastPicker';
 
-class GameBoard extends React.Component {
+class GameBoard extends Component {
   // TODO: ADD RESET BUTTON FOR GAMEBOARD
   constructor(props){
     super(props)
