@@ -3,7 +3,11 @@ body {
   background-image: url("../public/images/film_reels.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Limelight';
+  /* font-family: 'Limelight'; */
+}
+
+.modal {
+  display:block;
 }
 
 /*TODO: MAKE MORE RESPONSIVE?*/
