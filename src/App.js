@@ -4,6 +4,7 @@ import './App.css';
 import GameBoard from './components/GameBoard';
 import SearchModal from './components/SearchModal';
 
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -19,6 +20,7 @@ class App extends Component {
   }
 
   submitSearch(event){
+    this.setState({showSearchModal: false})
     event.preventDefault();
     const searchUrl = `${apiConfigs.API_ROOT}/movie_search?query=` + encodeURI(this.state.searchValue);
 
@@ -34,28 +36,20 @@ class App extends Component {
       })
   }
 
-  render() {
-    const { showSearchModal } = this.state
+  resetGame() {
+    this.setState({
+      movieChoices: [],
+      showSearchModal: true
+    })
+  }
 
+  render() {
     if (this.state.movieChoices.length > 0) {
+      return (<GameBoard movieChoices={this.state.movieChoices} resetGame={this.resetGame.bind(this)}/>)
+    } else {
       return (
         <div>
-          <div id="gameContainer" className="container-fluid">
-            <div className="row">
-              <div className="col-md-1"></div>
-              <div className="col-md-10 app">
-                <GameBoard movieChoices={this.state.movieChoices}/>
-              </div>
-              <div className="col-md-1"></div>
-            </div>
-          </div>
-        </div>
-      )
-    } else {
-      return(
-        <div>
-          <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
-          <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
+          <SearchModal open={this.state.showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
         </div>
       )
     }

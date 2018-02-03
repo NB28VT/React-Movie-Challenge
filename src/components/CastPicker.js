@@ -75,12 +75,12 @@ class CastPicker extends Component {
 
   checkForWinner(){
     if (this.state.selections.every(selection => selection.correct)) {
-      alert("youwinnnnn");
+      this.props.declareWinner();
     }
   }
 
   render(){
-    // TODO: NICER LOOKING LOADING MESSAGE
+    // TODO: CENTER THIS LOADING MESSAGE
     if (this.state.castLoaded) {
       return(
         <div className="row castRow">
