@@ -14,18 +14,19 @@ body {
 .searchModal {
   height: 300px;
   width: 600px;
-  background-image: url("../public/images/popcorn_spill_85_percent.png");
-  background-size: cover;
   position: fixed;
   top: 20%;
   left: 30%;
   bottom: 20%;
   right: 30%;
   z-index: 1000;
-  border-radius: 25px;
-  text-shadow: 1px 1px white;
-  box-shadow: 0 8px 6px -6px #bdbdbd;
 }
+
+.successModal {
+  /* background-image: url("../public/images/popcorn_spill_85_percent.png");
+  background-size: cover; */
+}
+
 
 .searchModal h1 {
   font-size: 80px;

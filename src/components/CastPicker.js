@@ -80,7 +80,7 @@ class CastPicker extends Component {
   }
 
   render(){
-    // TODO: NICER LOOKING LOADING MESSAGE
+    // TODO: CENTER THIS LOADING MESSAGE
     if (this.state.castLoaded) {
       return(
         <div className="row castRow">
