@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import * as apiConfigs from './api-config.js';
 import './App.css';
 import GameBoard from './components/GameBoard';
-// import SearchModal from './components/SearchModal';
-var Modal = require('react-bootstrap-modal')
+import SearchModal from './components/SearchModal';
+
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   submitSearch(event){
+    this.setState({showSearchModal: false})
     event.preventDefault();
     const searchUrl = `${apiConfigs.API_ROOT}/movie_search?query=` + encodeURI(this.state.searchValue);
 
@@ -36,9 +37,6 @@ class App extends Component {
   }
 
   render() {
-    // const { showSearchModal } = this.state
-
-
     if (this.state.movieChoices.length > 0) {
       return (
         <div>
@@ -54,16 +52,11 @@ class App extends Component {
         </div>
       )
     } else {
-      <div>
-          <SearchModal open={this.state.showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
-      </div>
-      // Old modal
-      // return(
-      //   <div>
-      //     <button className="btn" onClick={() =>this.setState({showSearchModal: !showSearchModal})}>Search</button>
-      //     <SearchModal open={showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)} onClose={()=>this.setState({showSearchModal: false})}/>
-      //   </div>
-      // )
+      return (
+        <div>
+          <SearchModal open={this.state.showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
+        </div>
+      )
     }
   }
 }
