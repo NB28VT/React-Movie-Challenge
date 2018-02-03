@@ -75,7 +75,7 @@ class CastPicker extends Component {
 
   checkForWinner(){
     if (this.state.selections.every(selection => selection.correct)) {
-      alert("youwinnnnn");
+      this.props.declareWinner();
     }
   }
 

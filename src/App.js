@@ -36,20 +36,16 @@ class App extends Component {
       })
   }
 
-  reset() {
+  resetGame() {
     this.setState({
       movieChoices: [],
       showSearchModal: true
     })
   }
 
-  declareWinner() {
-    // Show winner modal with reset button to try again
-  }
-
   render() {
     if (this.state.movieChoices.length > 0) {
-      return (<GameBoard movieChoices={this.state.movieChoices} reset={this.reset.bind(this)} declareWinner={this.declareWinner.bind(this)}/>)
+      return (<GameBoard movieChoices={this.state.movieChoices} resetGame={this.resetGame.bind(this)}/>)
     } else {
       return (
         <div>
