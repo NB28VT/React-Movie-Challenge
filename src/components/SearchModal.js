@@ -1,23 +1,33 @@
 import React, {Component} from 'react';
-var Modal = require('react-bootstrap-modal')
+import {Modal} from "react-bootstrap";
+import filmReel from "../../public/images/placeholderFilmReel.png";
+import '../styles/search_modal.css';
 
 class SearchModal extends Component {
   render() {
     return(
-      <div>
-        <Modal className="searchModal" show={this.props.open}  aria-labelledby="searchModal">
-          <Modal.Header closeButton>
-            <Modal.Title id="searchModal">Welcome to Who's In It? The movie cast matching game.</Modal.Title>
-            <Modal.Body>
-              <p>To get started, enter your favorite movie title below:</p>
-              <form onSubmit={this.props.submitSearch}>
-                <input type="text" className="searchBar" onChange={this.props.updateSearch}name="search"/>
-                <input type="submit" value="Submit" />
-              </form>
-            </Modal.Body>
-          </Modal.Header>
-        </Modal>
-      </div>
+      <Modal bsSize="large" show={this.props.show} dialogClassName="search-modal">
+        <Modal.Body>
+          <div className="container-fluid search-form-body">
+            <div className="row">
+              <div className="col-md-4 logo">
+                <img src={filmReel} alt="film reel"></img>
+              </div>
+              <div className="col-md-8 logo-title">
+                <h1>Who's In It?</h1>
+                <h2>The Movie Cast Matching Game</h2>
+                <div id="search-form">
+                  <p>To get started, search for your favorite movie title or series below:</p>
+                  <form onSubmit={this.props.submitSearch}>
+                    <input type="text" className="search-bar" onChange={this.props.updateSearch}name="search"/>
+                    <input className="search-button" type="submit" value="Search" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     )
   }
 }

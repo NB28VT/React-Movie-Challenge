@@ -3,37 +3,10 @@ body {
   background-image: url("../public/images/film_reels.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  /* font-family: 'Limelight'; */
 }
 
 .modal {
   display:block;
-}
-
-/*TODO: MAKE MORE RESPONSIVE?*/
-.searchModal {
-  height: 300px;
-  width: 600px;
-  position: fixed;
-  top: 20%;
-  left: 30%;
-  bottom: 20%;
-  right: 30%;
-  z-index: 1000;
-}
-
-.successModal {
-  /* background-image: url("../public/images/popcorn_spill_85_percent.png");
-  background-size: cover; */
-}
-
-
-.searchModal h1 {
-  font-size: 80px;
-}
-
-.searchBar {
-  width: 80%;
 }
 
 .closeButton {

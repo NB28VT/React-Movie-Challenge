@@ -1,0 +1,59 @@
+.modal-body {
+  background-image: url("../../public/images/curtain-background.png");
+}
+
+/* TODO: ROUNDED EDGES */
+
+.search-form-body {
+  height: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.search-modal {
+  width: 1000px;
+}
+
+.logo img {
+  height: 325px;
+}
+
+.logo-title h1, h2, p {
+  text-shadow: 0 0 0.2em white;
+  color: #FFDD4E;
+  font-family: 'Limelight', cursive;
+}
+
+.logo-title h1 {
+  font-size: 100px;
+}
+
+.logo-title h2 {
+  font-size: 35px;
+  text-align: center;
+}
+
+.logo-title p {
+  text-align: center;
+  font-size: 17px;
+}
+
+#search-form {
+  margin-top: 70px;
+}
+
+.search-bar {
+  width: 80%;
+  height: 41px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.search-button {
+  width: 20%;
+  height: 40px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
