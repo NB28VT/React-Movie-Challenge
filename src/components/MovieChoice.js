@@ -34,9 +34,9 @@ class MovieChoice extends Component {
 
   render() {
     if (this.state.needsPlaceholder) {
-      return(<PosterPlaceholder selectMovie={this.selectMovie.bind(this)} alt={this.props.title} name={this.props.title} release_date={this.props.release_date}/>)
+      return(<PosterPlaceholder posterClass={this.props.posterClass} selectMovie={this.selectMovie.bind(this)} alt={this.props.title} name={this.props.title} release_date={this.props.release_date}/>)
     } else {
-      return(<img src={this.state.imageSource}  onClick={this.selectMovie.bind(this)} alt={this.props.title} className="img-thumbnail movieChoice"/>)
+      return(<img src={this.state.imageSource}  onClick={this.selectMovie.bind(this)} alt={this.props.title} className="img-thumbnail movie-poster"/>)
     }
 
   }

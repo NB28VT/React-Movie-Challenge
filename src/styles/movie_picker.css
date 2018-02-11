@@ -1,0 +1,30 @@
+.movie-picker-top {
+  height: 20vh;
+}
+
+.movie-picker-middle {
+  height: 60vh;
+}
+
+.movie-picker-bottom {
+  height: 20vh;
+}
+
+.poster-row {
+  text-align: center;
+  height: 100%;
+}
+
+.movie-poster {
+  float: none;
+  display: inline-block;
+  height: 90%;
+  width: 30%;
+}
+
+.poster-placeholder {
+  text-align: center;
+  vertical-align: middle;
+  background-image: url("../../public/images/placeholderFilmReel.png");
+  background-size: contain;
+}

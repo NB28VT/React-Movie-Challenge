@@ -8,7 +8,7 @@ class PosterPlaceholder extends Component {
 
   render() {
     return (
-      <div className="img-thumbnail movieChoice posterPlaceholder" onClick={this.props.selectMovie}>
+      <div className="img-thumbnail movie-poster poster-placeholder" onClick={this.props.selectMovie}>
         <h1>{this.props.name} ({this.parseReleaseDate()})</h1>
       </div>
     )

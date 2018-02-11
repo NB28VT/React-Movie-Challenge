@@ -20,31 +20,6 @@ body {
   padding-left: 20px;
 }
 
-.moviePicker {
-  position: fixed;
-  top: 20%;
-  left: 25%;
-  bottom: 20%;
-  right: 30%;
-  height: 400px;
-  width: 100%;
-  text-shadow: 1px 1px white;
-}
-
-.movieChoice {
-  float: left;
-  display: block;
-  height: 400px;
-  width: 270px;
-}
-
-.posterPlaceholder {
-  text-align: center;
-  vertical-align: middle;
-  background-image: url("../public/images/placeholderFilmReel.png");
-  background-size: contain;
-}
-
 .castRow {
   position: fixed;
   top: 20%;
