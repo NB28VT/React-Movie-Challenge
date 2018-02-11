@@ -21,9 +21,14 @@ class GameBoard extends Component {
     this.props.declareWinner();
   }
 
+  resetGame(){
+    this.setState({movieID: null});
+    this.props.resetGame();
+  }
+
   render(){
     if (this.state.movieID) {
-      return(<CastPicker movieID={this.state.movieID} declareWinner={this.declareWinner.bind(this)}/>)
+      return(<CastPicker movieID={this.state.movieID} declareWinner={this.declareWinner.bind(this)} resetGame={this.resetGame.bind(this)}/>)
     } else if (this.props.movieChoices.length > 0) {
       return (<MoviePicker movieChoices={this.props.movieChoices} selectMovie={this.selectMovie.bind(this)} />)
     } else {
