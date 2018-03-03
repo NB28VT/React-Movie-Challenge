@@ -95,7 +95,7 @@ class CastPicker extends Component {
                     <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
                   </div>
                 ))}
-  
+
             </div>
             <div className="col-md-1"></div>
           </div>

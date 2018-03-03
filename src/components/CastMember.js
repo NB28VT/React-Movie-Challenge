@@ -53,7 +53,7 @@ class CastMember extends Component {
 render() {
   return(
     <div>
-
+      <CastThumbnail imageSource={this.state.imageSource} name={this.props.name} imageClass={this.calculateImageClass()}/>
 
 
     </div>
