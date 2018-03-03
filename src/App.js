@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as apiConfigs from './api-config.js';
-import './App.css';
 import GameBoard from './components/GameBoard';
 import SearchModal from './components/SearchModal';
 import SuccessModal from './components/SuccessModal';

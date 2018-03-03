@@ -1,0 +1,40 @@
+.castRow {
+  position: fixed;
+  top: 20%;
+  left: 25%;
+  bottom: 20%;
+  right: 30%;
+  padding-top: 20px;
+  margin: auto;
+  width: 700px;
+}
+
+.castMember{
+  float: left;
+  margin-right: 10px;
+  display: block;
+  width: 130px;
+}
+
+.castButtons {
+  width: 100%;
+}
+
+.castMember img {
+  max-width: 100%;
+}
+
+.correctAnswer {
+  border: 8px solid;
+  border-color: green;
+}
+
+.wrongAnswer {
+  border: 8px solid;
+  border-color: red;
+}
+
+.resetButton {
+  height: 60px;
+  width: 100%;
+}

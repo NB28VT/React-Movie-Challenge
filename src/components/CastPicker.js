@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CastMember from "./CastMember"
+import '../styles/cast_picker.css';
 import * as apiConfigs from '../api-config.js';
 var _ = require("lodash")
 
@@ -83,13 +84,20 @@ class CastPicker extends Component {
     // TODO: CENTER THIS LOADING MESSAGE
     if (this.state.castLoaded) {
       return(
-        <div className="row castRow">
-          {this.state.selections.map((castMember) => (
-            <div key={castMember.id}>
-              <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
+        <div>
+          <div className="row castRow">
+            {this.state.selections.map((castMember) => (
+              <div key={castMember.id}>
+                <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
+              </div>
+            ))}
+            <div>
+              <button className="btn btn-large btn-block resetButton" onClick={this.props.resetGame}>Switch Movie</button>
             </div>
-          ))}
+          </div>
+
         </div>
+
       )
     } else {
       return(<h1>Loading...</h1>)
