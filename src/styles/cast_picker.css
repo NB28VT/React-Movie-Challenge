@@ -32,6 +32,18 @@
   width: 100%;
 }
 
+.img-thumbnail.correct {
+  background-color: green;
+  border-width: 0px;
+  box-shadow: 0 0 1em #72FF3B;
+}
+
+.img-thumbnail.incorrect {
+  background-color: red;
+  border-width: 0px;
+  box-shadow: 0 0 1em #FF0A00;
+}
+
 .cast-buttons {
   margin-top: 10%;
   width: 100%;
@@ -40,6 +52,20 @@
 .cast-buttons > button {
   font-size: 125%;
 }
+
+.loading-message {
+  text-align: center;
+}
+
+.loading-message h1 {
+  font-size: 200px;
+  text-shadow: 0 0 0.2em black;
+  color: #FFDD4E;
+  font-family: 'Limelight', cursive;
+}
+
+
+
 
 /* .game-reset {
   width: 100%;

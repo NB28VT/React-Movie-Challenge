@@ -80,7 +80,6 @@ class CastPicker extends Component {
     }
   }
 
-
   render() {
     if(this.state.castLoaded) {
       return (
@@ -101,7 +100,16 @@ class CastPicker extends Component {
       )
     } else {
       return(
-        <h1>Loading</h1>
+        <div className="container-fluid">
+          <div className="row cast-picker-top"></div>
+          <div className="row cast-picker-middle">
+            <div className="loading-message">
+                <h1>Loading..</h1>
+            </div>
+          </div>
+          <div className="row game-reset"></div>
+          <div className="row cast-picker-bottom"></div>
+        </div>
       )
     }
   }

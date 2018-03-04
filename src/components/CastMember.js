@@ -37,9 +37,9 @@ class CastMember extends Component {
 
   calculateImageClass( ){
     if (this.props.correct === true) {
-        return "img-thumbnail correctAnswer";
+        return "img-thumbnail correct";
     } else if (this.props.correct === false) {
-        return "img-thumbnail wrongAnswer";
+        return "img-thumbnail incorrect";
     } else {
       return "img-thumbnail";
     }
