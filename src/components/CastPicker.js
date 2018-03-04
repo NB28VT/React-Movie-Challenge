@@ -85,6 +85,7 @@ class CastPicker extends Component {
       return (
         <div className="container-fluid">
           <div className="row cast-picker-top"></div>
+
           <div className="row cast-picker-middle">
             <div className="col-md-1"></div>
             <div className="col-md-10 cast-row">
@@ -94,9 +95,17 @@ class CastPicker extends Component {
             </div>
             <div className="col-md-1"></div>
           </div>
-          <div className="row game-reset"></div>
-          <div className="row cast-picker-bottom"></div>
+
+          <div className="row">
+            <div className="col-md-4"></div>
+            <div className="col-md-4 game-reset">
+              <button className="btn btn-large reset-button" onClick={this.props.resetGame}>Select New Film</button>
+            </div>
+            <div className="col-md-4"></div>
+          </div>
+
         </div>
+
       )
     } else {
       return(
@@ -107,36 +116,11 @@ class CastPicker extends Component {
                 <h1>Loading..</h1>
             </div>
           </div>
-          <div className="row game-reset"></div>
           <div className="row cast-picker-bottom"></div>
         </div>
       )
     }
   }
-
-  // render(){
-  //   // TODO: CENTER THIS LOADING MESSAGE
-  //   if (this.state.castLoaded) {
-  //     return(
-  //       <div>
-  //         <div className="row castRow">
-  //           {this.state.selections.map((castMember) => (
-  //             <div key={castMember.id}>
-  //               <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
-  //             </div>
-  //           ))}
-  //           <div>
-  //             <button className="btn btn-large btn-block resetButton" onClick={this.props.resetGame}>Switch Movie</button>
-  //           </div>
-  //         </div>
-  //
-  //       </div>
-  //
-  //     )
-  //   } else {
-  //     return(<h1>Loading...</h1>)
-  //   }
-  // }
 }
 
 

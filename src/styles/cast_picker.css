@@ -2,16 +2,19 @@
   height: 15vh;
 }
 
-.cast-picker-bottom {
-  height: 15vh;
+.reset-button {
+  margin-top: 30px;
+  font-family: 'Limelight', cursive;
+  font-size: 300%;
+  width: 100%;
+  background-image: url("../../public/images/curtain-background.png");
+  text-shadow: 0 0 0.3em white;
+  color: #FFDD4E;
+  border-radius: 0.2em;
 }
 
-.cast-picker-middle {
-  height: 60vh;
-}
-
-.game-reset {
-  height: 10vh;
+.btn-large:hover {
+  color: white;
 }
 
 .cast-row {
@@ -63,56 +66,3 @@
   color: #FFDD4E;
   font-family: 'Limelight', cursive;
 }
-
-
-
-
-/* .game-reset {
-  width: 100%;
-  margin-top: 2%;
-  height: 15%;
-  border-color: yellow;
-  border: 3px solid;
-} */
-
-
-/* .castRow {
-  position: fixed;
-  top: 20%;
-  left: 25%;
-  bottom: 20%;
-  right: 30%;
-  padding-top: 20px;
-  margin: auto;
-  width: 700px;
-}
-
-.castMember{
-  float: left;
-  margin-right: 10px;
-  display: block;
-  width: 130px;
-}
-
-.castButtons {
-  width: 100%;
-}
-
-.castMember img {
-  max-width: 100%;
-}
-
-.correctAnswer {
-  border: 8px solid;
-  border-color: green;
-}
-
-.wrongAnswer {
-  border: 8px solid;
-  border-color: red;
-}
-
-.resetButton {
-  height: 60px;
-  width: 100%;
-} */
