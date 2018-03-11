@@ -3,6 +3,7 @@ import CastThumbnail from './CastThumbnail'
 import CastSelections from './CastSelections'
 import * as apiConfigs from '../api-config.js';
 import filmCountdown from '../../public/images/film_countdown.gif'
+import '../styles/cast_picker.css';
 
 class CastMember extends Component {
   constructor(props) {
@@ -36,9 +37,11 @@ class CastMember extends Component {
 
   calculateImageClass( ){
     if (this.props.correct === true) {
-        return "correctAnswer";
+        return "img-thumbnail correct";
     } else if (this.props.correct === false) {
-        return "wrongAnswer";
+        return "img-thumbnail incorrect";
+    } else {
+      return "img-thumbnail";
     }
   }
   registerPick(selectedID){
@@ -51,7 +54,7 @@ class CastMember extends Component {
 
   render() {
     return(
-      <div className="castMember">
+      <div className="cast-member">
         <CastThumbnail imageSource={this.state.imageSource} name={this.props.name} imageClass={this.calculateImageClass()}/>
         <CastSelections scrambledSelections={this.props.scrambledSelections} registerPick={this.registerPick.bind(this)}/>
       </div>

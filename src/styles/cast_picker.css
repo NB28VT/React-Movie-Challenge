@@ -1,40 +1,72 @@
-.castRow {
-  position: fixed;
-  top: 20%;
-  left: 25%;
-  bottom: 20%;
-  right: 30%;
-  padding-top: 20px;
-  margin: auto;
-  width: 700px;
+.cast-picker-top {
+  height: 15vh;
 }
 
-.castMember{
-  float: left;
-  margin-right: 10px;
-  display: block;
-  width: 130px;
+.reset-button {
+  margin-top: 30px;
+  font-family: 'Limelight', cursive;
+  font-size: 300%;
+  width: 100%;
+  background-image: url("../../public/images/curtain-background.png");
+  text-shadow: 0 0 0.3em white;
+  color: #FFDD4E;
+  border-radius: 0.2em;
 }
 
-.castButtons {
+.btn-large:hover {
+  color: white;
+}
+
+.cast-row {
+  text-align: center;
+  height: 100%;
+}
+
+.cast-member {
+  float: none;
+  display: inline-block;
+  height: 100%;
+  width: 18%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.cast-member img {
   width: 100%;
 }
 
-.castMember img {
-  max-width: 100%;
+.img-thumbnail.correct {
+  background-color: green;
+  border-width: 0px;
+  box-shadow: 0 0 1em #72FF3B;
 }
 
-.correctAnswer {
-  border: 8px solid;
-  border-color: green;
+.img-thumbnail.incorrect {
+  background-color: red;
+  border-width: 0px;
+  box-shadow: 0 0 1em #FF0A00;
 }
 
-.wrongAnswer {
-  border: 8px solid;
-  border-color: red;
-}
-
-.resetButton {
-  height: 60px;
+.cast-buttons {
+  margin-top: 15%;
   width: 100%;
+}
+
+.cast-buttons > button {
+  font-size: 125%;
+}
+
+.selected {
+  background-color: #FFDD4E;
+}
+
+.loading-message {
+  text-align: center;
+}
+
+.loading-message h1 {
+  font-size: 200px;
+  text-shadow: 0 0 0.2em black;
+  color: #FFDD4E;
+  font-family: 'Limelight', cursive;
 }
