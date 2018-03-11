@@ -3,10 +3,8 @@ import MoviePicker from './MoviePicker';
 import CastPicker from './CastPicker';
 
 class GameBoard extends Component {
-  // TODO: ADD RESET BUTTON FOR GAMEBOARD
   constructor(props){
     super(props)
-
     this.state = {
       movieID: null
     }
