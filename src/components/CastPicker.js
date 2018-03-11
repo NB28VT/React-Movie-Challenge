@@ -19,7 +19,6 @@ class CastPicker extends Component {
   }
 
   loadMovieCast(){
-      // TODO: only load first 5 cast members that have an available profile url
       const castUrl = `${apiConfigs.API_ROOT}/movie_data?movie_id=` + this.props.movieID;
       fetch(castUrl).then((response) => response.json())
         .then((responseJson) => {
@@ -35,10 +34,6 @@ class CastPicker extends Component {
 
             this.setState({selections: filteredCast});
             this.scrambleCastSelections(filteredCast);
-
-          } else {
-            // TODO: ADD ERROR HANDLING
-            console.log("Error getting cast");
           }
         })
   }
@@ -48,7 +43,6 @@ class CastPicker extends Component {
   }
 
   scrambleCastSelections(castMembers){
-    // TODO: fix selections so not in the same order in the buttons
     const castArray = castMembers.slice();
     // Fisher-Yates shuffle
     var remainingCount = castArray.length, top, index;
@@ -85,12 +79,11 @@ class CastPicker extends Component {
       return (
         <div className="container-fluid">
           <div className="row cast-picker-top"></div>
-
           <div className="row cast-picker-middle">
             <div className="col-md-1"></div>
             <div className="col-md-10 cast-row">
                 {this.state.selections.map((castMember) => (
-                    <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
+                  <CastMember key={castMember.id} id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
                 ))}
             </div>
             <div className="col-md-1"></div>

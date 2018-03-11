@@ -11,7 +11,8 @@ class App extends Component {
       movieChoices: [],
       searchValue: "",
       showSearchModal: true,
-      showSuccessModal: false
+      showSuccessModal: false,
+      noResults: false
     }
   }
 
@@ -30,11 +31,15 @@ class App extends Component {
           this.setState({
             movieChoices: results.slice(0,3),
             showSearchModal: false,
-            showSuccessModal: false
+            showSuccessModal: false,
+            noResults: false
           });
         } else {
-          // TODO: MAKE THIS MORE SLICK
-          alert("No movies found!");
+          this.setState({
+            noResults: true,
+            showSearchModal: true,
+            showSuccessModal: false
+          });
         }
       })
   }
@@ -57,7 +62,7 @@ class App extends Component {
     return(
       <div>
         <SuccessModal show={this.state.showSuccessModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
-        <SearchModal show={this.state.showSearchModal} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
+        <SearchModal show={this.state.showSearchModal} noResults={this.state.noResults} updateSearch={this.updateSearch.bind(this)} submitSearch={this.submitSearch.bind(this)}/>
         <GameBoard movieChoices={this.state.movieChoices} declareWinner={this.declareWinner.bind(this)} resetGame={this.resetGame.bind(this)}/>
       </div>
     )

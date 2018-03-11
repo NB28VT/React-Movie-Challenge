@@ -28,11 +28,7 @@ class CastMember extends Component {
           imageLoaded: true
         })
       }
-    } else {
-      // TODO: Don't load cast members that don't have photos
-      // Stop render somehow?
-    }
-
+    } 
   }
 
   calculateImageClass( ){

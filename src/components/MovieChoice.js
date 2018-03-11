@@ -26,7 +26,7 @@ class MovieChoice extends Component {
   }
 
   selectMovie(){
-    // Prevent movie selection before poster loads
+    // Stop movie selection before poster loads
     if (this.state.selectable) {
       this.props.selectMovie(this.props.movieID)
     }
