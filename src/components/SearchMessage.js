@@ -6,7 +6,6 @@ class SearchMessage extends Component {
       return (
         <div>
           <h1>No Movies Found</h1>
-          {/* <h2>Search Again</h2> */}
         </div>
       )
     } else {
