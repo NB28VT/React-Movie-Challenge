@@ -48,12 +48,16 @@
 }
 
 .cast-buttons {
-  margin-top: 10%;
+  margin-top: 15%;
   width: 100%;
 }
 
 .cast-buttons > button {
   font-size: 125%;
+}
+
+.selected {
+  background-color: #FFDD4E;
 }
 
 .loading-message {
