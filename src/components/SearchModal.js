@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Modal} from "react-bootstrap";
 import filmReel from "../../public/images/placeholderFilmReel.png";
+import SearchMessage from './SearchMessage';
 import '../styles/search_modal.css';
 
 class SearchModal extends Component {
@@ -14,10 +15,9 @@ class SearchModal extends Component {
                 <img src={filmReel} alt="film reel"></img>
               </div>
               <div className="col-md-8 logo-title">
-                <h1>Who's In It?</h1>
-                <h2>The Movie Cast Matching Game</h2>
+                <SearchMessage noResults={this.props.noResults}/>
                 <div id="search-form">
-                  <p>To get started, search for your favorite movie title or series below:</p>
+                  <p>Search for your favorite movie title or series below:</p>
                   <form onSubmit={this.props.submitSearch}>
                     <input type="text" className="search-bar" onChange={this.props.updateSearch}name="search"/>
                     <input className="search-button" type="submit" value="Search" />
