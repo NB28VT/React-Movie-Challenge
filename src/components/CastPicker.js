@@ -103,9 +103,7 @@ class CastPicker extends Component {
             </div>
             <div className="col-md-4"></div>
           </div>
-
         </div>
-
       )
     } else {
       return(
