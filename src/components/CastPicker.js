@@ -83,7 +83,7 @@ class CastPicker extends Component {
             <div className="col-md-1"></div>
             <div className="col-md-10 cast-row">
                 {this.state.selections.map((castMember) => (
-                    <CastMember id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
+                  <CastMember key={castMember.id} id={castMember.id} name={castMember.name} profileImageSource={castMember.profile_path} correct={castMember.correct} scrambledSelections={this.state.scrambledSelections} updatePick={this.updatePick.bind(this)} />
                 ))}
             </div>
             <div className="col-md-1"></div>
